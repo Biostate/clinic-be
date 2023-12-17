@@ -1,11 +1,12 @@
 import AuthenticatedLayout from "@/Pages/Admin/Layout/AuthenticatedLayout.jsx";
+import Calendar from '@/Components/Calendar';
 
 const Dashboard = ({ auth }) => {
 
 
     return (
       <div>
-          Test
+          <Calendar />
       </div>
     );
 }
