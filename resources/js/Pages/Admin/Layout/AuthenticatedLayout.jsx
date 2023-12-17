@@ -85,8 +85,8 @@ export default function AuthenticatedLayout({ children }){
                     alignItems: 'center',
                 }}
             >
-                <div className="h-full py-2">
-                    <img className="h-full" src="/assets/images/logo.svg" alt="logo" />
+                <div className="h-full">
+                    <img className="h-full" src="/assets/images/logo.png" alt="logo" />
                 </div>
                 <Menu
                     theme="dark"
