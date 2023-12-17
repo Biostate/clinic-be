@@ -23,11 +23,11 @@ const items = [
         children: [
             {
                 label:'İzin',
-                key:'/admin/requests',
+                key:'/admin/request/leave',
             },
             {
                 label:'Avans',
-                key:'/admin/requests',
+                key:'/admin/request/advance',
             }
         ]
     },
@@ -117,9 +117,9 @@ export default function AuthenticatedLayout({ children }){
                         items={items}
                         onClick={(e) => {
                             if (e.key === 'logout') {
-                                router.push('/app/login');
+                                router.get('/app/login');
                             }else {
-                                router.push(e.key);
+                                router.get(e.key);
                             }
                         }}
                     />
