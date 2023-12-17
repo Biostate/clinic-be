@@ -19,7 +19,7 @@ function getItem(label, key, icon, children) {
 const items = [
     {
         label:'Talep Oluştur',
-        key:'/admin/requests',
+        key:null,
         children: [
             {
                 label:'İzin',
@@ -116,6 +116,8 @@ export default function AuthenticatedLayout({ children }){
                         }}
                         items={items}
                         onClick={(e) => {
+                            if (!e.key) return;
+
                             if (e.key === 'logout') {
                                 router.get('/app/login');
                             }else {

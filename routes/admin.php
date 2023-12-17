@@ -14,3 +14,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/request/advance', [\App\Http\Controllers\Admin\RequestController::class, 'advanceRequest'])
         ->name('admin.advance');
 });
+
+
+Route::prefix('admin')->middleware('guest')->group(function () {
+    Route::get('/login', [\App\Http\Controllers\Admin\AuthController::class, 'login'])
+        ->name('admin.profile');
+});
