@@ -13,6 +13,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         ->name('admin.leave');
     Route::get('/request/advance', [\App\Http\Controllers\Admin\RequestController::class, 'advanceRequest'])
         ->name('admin.advance');
+
+    Route::get('/meeting', [\App\Http\Controllers\Admin\MeetingController::class, 'meeting'])
+        ->name('admin.meeting');
 });
 
 
