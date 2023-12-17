@@ -25,7 +25,7 @@ Generate application key.
 php artisan key:generate
 ```
 
-Run migrations.
+Run install project command.
 ```
-php artisan migrate --seed
+php artisan project:install
 ```
