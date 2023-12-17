@@ -53,7 +53,7 @@ const items1 = ['1', '2', '3'].map((key) => ({
 }));
 
 
-export default function AuthenticatedLayout({ children }){
+export default function AuthenticatedLayout({ children, breadcrumbs = [] }){
     const [collapsed, setCollapsed] = useState(false);
     const {
         token: { colorBgContainer, borderRadiusLG },
@@ -136,9 +136,7 @@ export default function AuthenticatedLayout({ children }){
                             margin: '16px 0',
                         }}
                     >
-                        <Breadcrumb.Item>Home</Breadcrumb.Item>
-                        <Breadcrumb.Item>List</Breadcrumb.Item>
-                        <Breadcrumb.Item>App</Breadcrumb.Item>
+                        {breadcrumbs.map((breadcrumb) => breadcrumb)}
                     </Breadcrumb>
                     <Content
                         style={{
