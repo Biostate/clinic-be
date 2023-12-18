@@ -16,6 +16,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('/meeting', [\App\Http\Controllers\Admin\MeetingController::class, 'meeting'])
         ->name('admin.meeting');
+
+    Route::get('/todo', [\App\Http\Controllers\Admin\TodoController::class, 'index'])
+        ->name('admin.todo');
 });
 
 
