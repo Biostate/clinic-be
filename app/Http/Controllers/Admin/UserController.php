@@ -10,11 +10,11 @@ class UserController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Admin/Users/index');
+        return Inertia::render('Admin/App/Users/index');
     }
 
     public function create()
     {
-        return Inertia::render('Admin/Users/create');
+        return Inertia::render('Admin/App/Users/create');
     }
 }
