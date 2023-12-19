@@ -31,7 +31,7 @@ export default function Login(){
                         <div> 
                             <div className="flex justify-between">
                                 <div> {/* Beni hatirla */}
-                                    <Checkbox onChange={onChange}>Checkbox</Checkbox>    
+                                    <Checkbox onChange={onChange}>Beni hatirla</Checkbox>    
                                 </div> 
                                 <div> {/* Parolami unuttum */}
                                     <p>Parolami unuttum</p>
