@@ -1,8 +1,9 @@
 import AuthenticatedLayout from "@/Pages/Admin/Layout/AuthenticatedLayout.jsx";
 import Calendar from "@/Components/Calendar";
-import { Flex } from "antd";
-import { Input, Space, Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+
+import { Input, } from "antd";
+
+import TodoListItem from "@/Components/TodoListItem";
 const { Search } = Input;
 
 const todos = [
@@ -16,34 +17,24 @@ const todos = [
     },
 ];
 
+const colorVariants = {
+    bg_violet: 'bg-violet-50 ',
+    bg_green: 'bg-green-50 ',
+    bg_amber: 'bg-amber-50 ',
+    bg_pink: 'bg-pink-50 ',
+    
+    violet: 'bg-violet-500 ',
+    green: 'bg-green-600 ',
+    yellow: 'bg-yellow-400 ',
+    pink: 'bg-pink-600 ',
+
+  }
+
 const Todo = ({ auth }) => {
     const onSearch = (value, _e, info) => console.log(info?.source, value);
 
     return (
         <>
-            {/* <Flex
-                className="mb-4"
-                justify={"space-between"}
-
-            >
-                <div>
-                    <h1 className="font-bold text-xl">
-                        Yapılacaklar
-                    </h1>
-                </div>
-                <div>   
-                    arama ve filtreleme 
-                </div>  
-            </Flex>
-            <div>
-                <div className="font-bold">YAPILACAK</div>
-                <div>TODOS</div>
-                <div className="font-bold">YAPILIYOR</div>
-                <div>TODOS</div>
-                <div className="font-bold">YAPILDI</div>
-                <div>TODOS</div>
-            </div> */}
-
             <div className="flex flex-col gap-5 p-6 font-['Inter']  ">
                 {/* header */}
                 <div className="flex justify-between   ">
@@ -64,294 +55,40 @@ const Todo = ({ auth }) => {
                     </div>
                 </div>
                 {/* Waiting */}
-                <div className="flex flex-col  ">
+                <div>
                     <div>
                         <h2 className="text-zinc-800 text-base font-semibold  leading-normal tracking-tight">
                             Waiting
                         </h2>
                     </div>
-                    <div className="flex flex-col gap-3 mt-4 ">
-                        {/* Satır */}
-                        <div className=" flex justify-around bg-neutral-50 p-3 rounded-[10px]">
-                            <div className="flex gap-3 mt-2 ">
-                                <div class=" mt-[1px] w-3 h-3 bg-green-600 rounded-[3px]"></div>
-                                <p className="text-zinc-800 text-xs font-semibold   leading-[18px] tracking-tight  ">
-                                    Sonbahar Ortası Festivali etkinlik
-                                    planlaması
-                                </p>
-                            </div>
-                            <div className="mt-2">
-                                <div class=" px-2 py-0.5 bg-pink-100 rounded-2xl ">
-                                    <div class="text-pink-600 text-xs font-normal  leading-[18px] tracking-tight">
-                                        Son gün
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex gap-6 ">
-                                <p className="mt-1">Atanan Kişi</p>
-                                <Space>
-                                    <Avatar
-                                        style={{
-                                            backgroundColor: "#87d068",
-                                        }}
-                                        icon={<UserOutlined />}
-                                    />
-                                </Space>
-                            </div>
-                        </div>
-                        <div>
-                            <div className=" flex justify-around bg-neutral-50 p-3 rounded-[10px]">
-                                <div className="flex gap-3 mt-2 ">
-                                    <div class=" mt-[1px] w-3 h-3 bg-green-600 rounded-[3px]"></div>
-                                    <p className="text-zinc-800 text-xs font-semibold  leading-[18px] tracking-tight  ">
-                                        Sonbahar Ortası Festivali etkinlik
-                                        planlaması
-                                    </p>
-                                </div>
-                                <div className="mt-2">
-                                    <div class="  px-2 py-0.5 bg-violet-50 rounded-2xl ">
-                                        <div class="text-violet-500 text-xs font-normal leading-[18px] tracking-tight">
-                                            Son 2 gün
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex gap-6 ">
-                                    <p className="mt-1">Atanan Kişi</p>
-                                    <Space>
-                                        <Avatar
-                                            style={{
-                                                backgroundColor: "#87d068",
-                                            }}
-                                            icon={<UserOutlined />}
-                                        />
-                                    </Space>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className=" flex justify-around bg-neutral-50 p-3 rounded-[10px]">
-                                <div className="flex gap-3 mt-2 ">
-                                    <div class=" mt-[1px] w-3 h-3 bg-green-600 rounded-[3px]"></div>
-                                    <p className="text-zinc-800 text-xs font-semibold  leading-[18px] tracking-tight  ">
-                                        Sonbahar Ortası Festivali etkinlik
-                                        planlaması
-                                    </p>
-                                </div>
-                                <div className="mt-2">
-                                    <div class=" px-2 py-0.5 bg-emerald-50 rounded-2xl ">
-                                        <div class="text-green-600 text-xs font-normal  leading-[18px] tracking-tight">
-                                            12/09/2023
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex gap-6 ">
-                                    <p className="mt-1">Atanan Kişi</p>
-                                    <Space>
-                                        <Avatar
-                                            style={{
-                                                backgroundColor: "#87d068",
-                                            }}
-                                            icon={<UserOutlined />}
-                                        />
-                                    </Space>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className=" flex justify-around bg-neutral-50 p-3 rounded-[10px]">
-                                <div className="flex gap-3 mt-2 ">
-                                    <div class=" mt-[1px] w-3 h-3 bg-green-600 rounded-[3px]"></div>
-                                    <p className="text-zinc-800 text-xs font-semibold  leading-[18px] tracking-tight  ">
-                                        Sonbahar Ortası Festivali etkinlik
-                                        planlaması
-                                    </p>
-                                </div>
-                                <div className="mt-2">
-                                    <div class=" px-2 py-0.5 bg-amber-50 rounded-2xl ">
-                                        <div class="text-amber-400 text-xs font-normal  leading-[18px] tracking-tight">
-                                            Son gün
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex gap-6 ">
-                                    <p className="mt-1">Atanan Kişi</p>
-                                    <Space>
-                                        <Avatar
-                                            style={{
-                                                backgroundColor: "#87d068",
-                                            }}
-                                            icon={<UserOutlined />}
-                                        />
-                                    </Space>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <TodoListItem date="Son Gün" />
+                    <TodoListItem date="Son 2 Gün" />
+                    <TodoListItem date="12/09/2023" />
+                    <TodoListItem date="Son 4 Gün" />
                 </div>
                 {/* On-Process */}
                 <div>
-                    <div className="flex flex-col  ">
-                        <div>
-                            <h2 className="text-zinc-800 text-base font-semibold  leading-normal tracking-tight">
-                                On-Process
-                            </h2>
-                        </div>
-                        <div className="flex flex-col gap-3 mt-4 ">
-                            {/* Satır */}
-                            <div className=" flex justify-around bg-neutral-50 p-3 rounded-[10px]">
-                                <div className="flex gap-3 mt-2 ">
-                                    <div class=" mt-[1px] w-3 h-3 bg-violet-500 rounded-[3px]"></div>
-                                    <p className="text-zinc-800 text-xs font-semibold  leading-[18px] tracking-tight  ">
-                                        Sonbahar Ortası Festivali etkinlik
-                                        planlaması
-                                    </p>
-                                </div>
-                                <div className="mt-2">
-                                    <div class=" px-2 py-0.5 bg-pink-100 rounded-2xl ">
-                                        <div class="text-pink-600 text-xs font-normal  leading-[18px] tracking-tight">
-                                            Son gün
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex gap-6 ">
-                                    <p className="mt-1">Atanan Kişi</p>
-                                    <Space>
-                                        <Avatar
-                                            style={{
-                                                backgroundColor: "#87d068",
-                                            }}
-                                            icon={<UserOutlined />}
-                                        />
-                                    </Space>
-                                </div>
-                            </div>
-                            <div>
-                                <div className=" flex justify-around bg-neutral-50 p-3 rounded-[10px]">
-                                    <div className="flex gap-3 mt-2 ">
-                                        <div class=" mt-[1px] w-3 h-3 bg-violet-500 rounded-[3px]"></div>
-                                        <p className="text-zinc-800 text-xs font-semibold  leading-[18px] tracking-tight  ">
-                                            Sonbahar Ortası Festivali etkinlik
-                                            planlaması
-                                        </p>
-                                    </div>
-                                    <div className="mt-2">
-                                        <div class="  px-2 py-0.5 bg-violet-50 rounded-2xl ">
-                                            <div class="text-violet-500 text-xs font-normal leading-[18px] tracking-tight">
-                                                Son 2 gün
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-6 ">
-                                        <p className="mt-1">Atanan Kişi</p>
-                                        <Space>
-                                            <Avatar
-                                                style={{
-                                                    backgroundColor: "#87d068",
-                                                }}
-                                                icon={<UserOutlined />}
-                                            />
-                                        </Space>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div className=" flex justify-around bg-neutral-50 p-3 rounded-[10px]">
-                                    <div className="flex gap-3 mt-2 ">
-                                        <div class=" mt-[1px] w-3 h-3 bg-violet-500 rounded-[3px]"></div>
-                                        <p className="text-zinc-800 text-xs font-semibold  leading-[18px] tracking-tight  ">
-                                            Sonbahar Ortası Festivali etkinlik
-                                            planlaması
-                                        </p>
-                                    </div>
-                                    <div className="mt-2">
-                                        <div class=" px-2 py-0.5 bg-emerald-50 rounded-2xl ">
-                                            <div class="text-green-600 text-xs font-normal  leading-[18px] tracking-tight">
-                                                12/09/2023
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-6 ">
-                                        <p className="mt-1">Atanan Kişi</p>
-                                        <Space>
-                                            <Avatar
-                                                style={{
-                                                    backgroundColor: "#87d068",
-                                                }}
-                                                icon={<UserOutlined />}
-                                            />
-                                        </Space>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div className=" flex justify-around bg-neutral-50 p-3 rounded-[10px]">
-                                    <div className="flex gap-3 mt-2 ">
-                                        <div class=" mt-[1px] w-3 h-3 bg-violet-500 rounded-[3px]"></div>
-                                        <p className="text-zinc-800 text-xs font-semibold  leading-[18px] tracking-tight  ">
-                                            Sonbahar Ortası Festivali etkinlik
-                                            planlaması
-                                        </p>
-                                    </div>
-                                    <div className="mt-2">
-                                        <div class=" px-2 py-0.5 bg-amber-50 rounded-2xl ">
-                                            <div class="text-amber-400 text-xs font-normal  leading-[18px] tracking-tight">
-                                                Son gün
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-6 ">
-                                        <p className="mt-1">Atanan Kişi</p>
-                                        <Space>
-                                            <Avatar
-                                                style={{
-                                                    backgroundColor: "#87d068",
-                                                }}
-                                                icon={<UserOutlined />}
-                                            />
-                                        </Space>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div>
+                        <h2 className="text-zinc-800 text-base font-semibold  leading-normal tracking-tight">
+                            On-Process
+                        </h2>
                     </div>
+                    <TodoListItem date="Son Gün" />
+                    <TodoListItem date="Son 2 Gün"  />
+                    <TodoListItem date="12/09/2023" />
+                    <TodoListItem date="Son 4 Gün" />
+                    
                 </div>
                 {/* Pending */}
                 <div>
                     <div>
                         <h2 className="text-zinc-800 text-base font-semibold  leading-normal tracking-tight">
-                            Pending
+                            On-Process
                         </h2>
                     </div>
-                    <div className="mt-4">
-                        <div className=" flex justify-around bg-neutral-50 p-3 rounded-[10px]">
-                            <div className="flex gap-3 mt-2 ">
-                                <div class=" mt-[1px] w-3 h-3 bg-yellow-400 rounded-[3px]"></div>
-                                <p className="text-zinc-800 text-xs font-semibold  leading-[18px] tracking-tight  ">
-                                    Sonbahar Ortası Festivali etkinlik
-                                    planlaması
-                                </p>
-                            </div>
-                            <div className="mt-2">
-                            <div class=" px-2 py-0.5 bg-pink-100 rounded-2xl ">
-                                        <div class="text-pink-600 text-xs font-normal  leading-[18px] tracking-tight">
-                                            Bitiş Tarihi
-                                        </div>
-                                    </div>
-                            </div>
-                            <div className="flex gap-6 ">
-                                <p className="mt-1">Atanan Kişi</p>
-                                <Space>
-                                    <Avatar
-                                        style={{
-                                            backgroundColor: "#87d068",
-                                        }}
-                                        icon={<UserOutlined />}
-                                    />
-                                </Space>
-                            </div>
-                        </div>
-                    </div>
+                    <TodoListItem date="Bitiş Tarihi " />
                 </div>
+                
             </div>
         </>
     );
