@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import {
     Breadcrumb,
     Layout,
@@ -17,6 +17,7 @@ import {
     PayCircleOutlined,
     FolderOpenOutlined,
 } from "@ant-design/icons";
+import {pollingUserActive, requestUserActive} from "@/utils/pollingUserActive.js";
 
 const { Header, Content, Sider } = Layout;
 
@@ -66,6 +67,13 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
         console.log("click ", e);
         setCurrent(e.key);
     };
+
+    // polling backend every 15 seconds to set user's active status
+    useEffect(() => {
+        requestUserActive();
+        const interval = pollingUserActive(15);
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <Layout
