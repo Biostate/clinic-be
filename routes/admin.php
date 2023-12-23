@@ -24,6 +24,16 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         ->name('admin.users.index');
     Route::get('/users/create', [\App\Http\Controllers\Admin\UserController::class, 'create'])
         ->name('admin.users.create');
+
+    Route::middleware('api')->group(function () {
+        Route::post('/user/active', function (){
+            // return okay
+            return response()->json([
+                'status' => 'ok'
+            ]);
+        })
+            ->name('admin.active');
+    });
 });
 
 
