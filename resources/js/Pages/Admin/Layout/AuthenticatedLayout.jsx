@@ -42,30 +42,17 @@ const itemss = [
 
 const items = [
     {
-        label: (
-            <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://www.antgroup.com"
-            >
-                1st menu item
-            </a>
-        ),
-        key: "0",
-    },
-    {
-        label: (
-            <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://www.aliyun.com"
-            ></a>
-        ),
-        key: "1",
-    },
-    {
-        type: "divider",
-    },
+        label: 'Profili Düzenle',
+    key: '1',
+  },
+  {
+    label: 'Dil Seçenekleri',
+    key: '2',
+  },
+  {
+    label: 'Çıkış',
+    key: '3',
+  },
 ];
 
 const url =
@@ -132,9 +119,7 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
                     />
                     <div style={{ padding: "16px", textAlign: "center" }}>
                         <img
-                            src="path/to/your/image.jpg"
-                            alt="Your Image"
-                            style={{ maxWidth: "100%" }}
+                            
                         />
                     </div>
                 </Sider>
