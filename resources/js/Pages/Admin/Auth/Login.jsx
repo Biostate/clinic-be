@@ -31,7 +31,7 @@ export default function Login({ status }){
 
     return (
         <div className="flex flex-row">
-            <div className="flex max-h-screen w-6/12"> {/* Fotograf */}
+            <div className="flex max-h-screen"> {/* Fotograf */}
                 <img src="/assets/images/login_left_img.png" alt="login_img" />
             </div>
             <div className="flex justify-center"> {/* Ana bolum */}
