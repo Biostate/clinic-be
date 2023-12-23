@@ -17,6 +17,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/meeting', [\App\Http\Controllers\Admin\MeetingController::class, 'meeting'])
         ->name('admin.meeting');
 
+    Route::get('/todo', [\App\Http\Controllers\Admin\TodoController::class, 'index'])
+        ->name('admin.todo');
+
     Route::get('/users', [\App\Http\Controllers\Admin\UserController::class, 'index'])
         ->name('admin.users.index');
     Route::get('/users/create', [\App\Http\Controllers\Admin\UserController::class, 'create'])

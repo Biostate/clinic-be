@@ -29,3 +29,12 @@ Run install project command.
 ```
 php artisan project:install
 ```
+## Development
+
+Please run the following commands after pulling from master branch.
+```
+composer install
+npm install
+php artisan migrate
+php artisan patch:run
+```
