@@ -57,7 +57,9 @@ class UserSeeder extends Seeder
         ];
 
         foreach ($users as $user) {
-            User::factory()->create($user);
+            $userModel = User::factory()->create($user);
+
+            $userModel->assignRole('admin');
         }
     }
 }
