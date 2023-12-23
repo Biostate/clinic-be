@@ -40,4 +40,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 Route::prefix('admin')->middleware('guest')->group(function () {
     Route::get('/login', [\App\Http\Controllers\Admin\AuthController::class, 'login'])
         ->name('admin.profile');
+    Route::get('/login/employee', [\App\Http\Controllers\Admin\AuthController::class, 'employeeLogin'])
+        ->name('admin.employeeLogin');
 });
