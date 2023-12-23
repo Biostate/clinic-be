@@ -27,34 +27,13 @@ const columns = [
       render: (_, record) => (
           <Space size="middle">
             <Button type="dashed">
-              Düzenle  
-            </Button>    
+              Düzenle
+            </Button>
             <Button type="primary" danger>
               Kullanıcı Sil
             </Button>
           </Space>
       ),
-  },
-];
-
-const data = [
-  {
-      key: '1',
-      name: 'Wade Warren',
-      email: 'antt@gmail.com',
-      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-  },
-  {
-      key: '2',
-      name: 'Robert Fox',
-      email: 'antt@gmail.com',
-      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-  },
-  {
-      key: '3',
-      name: 'Marven McKinney',
-      email: 'antt@gmail.com',
-      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
   },
 ];
 
@@ -69,12 +48,12 @@ const suffix = (
 );
 const onSearch = (value, _e, info) => console.log(info?.source, value);
 
-const Users = ({ auth }) => {
+const Users = ({ users }) => {
   return (
     <div>
-      <Table columns={columns} dataSource={data} />
+      <Table columns={columns} dataSource={users} />
     </div>
-  );  
+  );
 }
 
 Users.layout = page => <AuthenticatedLayout children={page} />
