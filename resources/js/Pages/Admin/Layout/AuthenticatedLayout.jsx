@@ -10,12 +10,8 @@ import {
 } from "antd";
 import {
     DownOutlined,
-    CommentOutlined,
     MailOutlined,
     BellOutlined,
-    CalendarOutlined,
-    PayCircleOutlined,
-    FolderOpenOutlined,
 } from "@ant-design/icons";
 import {pollingUserActive, requestUserActive} from "@/utils/pollingUserActive.js";
 import menuItems from "@/utils/menuItems.jsx";
