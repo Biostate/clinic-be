@@ -14,7 +14,8 @@ import {
     BellOutlined,
 } from "@ant-design/icons";
 import {pollingUserActive, requestUserActive} from "@/utils/pollingUserActive.js";
-import { menuItems, onMenuItemClick} from "@/utils/adminMenu.jsx";
+import {determineOpenKeys, menuItems, onMenuItemClick} from "@/utils/adminMenu.jsx";
+import {router, usePage} from "@inertiajs/react";
 
 const { Header, Content, Sider } = Layout;
 
@@ -38,7 +39,9 @@ const url =
 
 export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
     const [theme, setTheme] = useState("dark");
-    const [current, setCurrent] = useState("1");
+    const { ziggy } = usePage().props
+    const [current, setCurrent] = useState(ziggy.currentPath);
+    const [openKeys, setOpenKeys] = useState(determineOpenKeys(current));
 
     // polling backend every 15 seconds to set user's active status
     useEffect(() => {
@@ -46,6 +49,12 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
         const interval = pollingUserActive(15);
         return () => clearInterval(interval);
     }, []);
+
+    const menuItemChanged = (current, openKeys) => {
+        setOpenKeys(openKeys);
+        setCurrent(current);
+        router.get(current)
+    }
 
     return (
         <Layout
@@ -91,8 +100,8 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
                 <Sider>
                     <Menu
                         theme={theme}
-                        onClick={onMenuItemClick}
-                        defaultOpenKeys={["sub1"]}
+                        onClick={(e) => onMenuItemClick(e, menuItemChanged)}
+                        defaultOpenKeys={openKeys}
                         selectedKeys={[current]}
                         mode="inline"
                         items={menuItems}

@@ -17,27 +17,44 @@ function getItem(label, key, icon, children, type) {
     };
 }
 
+export const determineOpenKeys = (currentRoute) => {
+    // get routes that have children
+    const routesWithChildren = menuItems.filter((item) => item.children);
 
-export const onMenuItemClick = (e) => {
-    console.log("click ", e);
+    // get the route that matches the current route
+    const currentRouteItem = routesWithChildren.find((item) => {
+        if (item.children) {
+            return item.children.find((child) => child.key === currentRoute);
+        }
+        return false;
+    });
+
+    if (currentRouteItem) {
+        return [currentRouteItem.key];
+    }
+
+    return [];
+};
+
+export const onMenuItemClick = (e, callback) => {
     if (!e.key){
         return;
     }
 
-    router.get(e.key);
+    callback(e.key, determineOpenKeys(e.key));
 };
 
 export const menuItems = [
-    getItem("Talep Oluştur (Personel)", null, <MailOutlined />, [
+    getItem("Talep Oluştur (Personel)", 'requests', <MailOutlined />, [
         getItem("İzin Talebi", "/admin/requests/leave/create"),
         getItem("Avans Talebi", "/admin/requests/advance/create"),
     ]),
-    getItem("Talepler (Yönetici)", null, <MailOutlined />, [
+    getItem("Talepler (Yönetici)", 'requests-admin', <MailOutlined />, [
         getItem("İzin Talepleri", "/admin/requests/leave"),
         getItem("Avans Talepleri", "/admin/requests/advance"),
     ]),
     getItem("Görevler", "/admin/todo", <FolderOpenOutlined />),
-    getItem("Kullanıcılar", null, <UserOutlined />, [
+    getItem("Kullanıcılar", 'users', <UserOutlined />, [
         getItem("Listeleme", "/admin/users"),
         getItem("Oluştur", "/admin/users/create"),
     ]),
