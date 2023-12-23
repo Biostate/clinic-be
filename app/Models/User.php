@@ -44,4 +44,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getAvatarAttribute()
+    {
+        // Todo: Add default avatar
+        return 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($this->email)));
+    }
 }
