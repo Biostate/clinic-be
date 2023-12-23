@@ -20,6 +20,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/todo', [\App\Http\Controllers\Admin\TodoController::class, 'index'])
         ->name('admin.todo');
 
+    Route::get('/users', [\App\Http\Controllers\Admin\UserController::class, 'index'])
+        ->name('admin.users.index');
+    Route::get('/users/create', [\App\Http\Controllers\Admin\UserController::class, 'create'])
+        ->name('admin.users.create');
+
     Route::middleware('api')->group(function () {
         Route::post('/user/active', function (){
             // return okay
