@@ -14,7 +14,7 @@ import {
     BellOutlined,
 } from "@ant-design/icons";
 import {pollingUserActive, requestUserActive} from "@/utils/pollingUserActive.js";
-import menuItems from "@/utils/menuItems.jsx";
+import { menuItems, onMenuItemClick} from "@/utils/adminMenu.jsx";
 
 const { Header, Content, Sider } = Layout;
 
@@ -39,11 +39,6 @@ const url =
 export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
     const [theme, setTheme] = useState("dark");
     const [current, setCurrent] = useState("1");
-
-    const onClick = (e) => {
-        console.log("click ", e);
-        setCurrent(e.key);
-    };
 
     // polling backend every 15 seconds to set user's active status
     useEffect(() => {
@@ -96,7 +91,7 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
                 <Sider>
                     <Menu
                         theme={theme}
-                        onClick={onClick}
+                        onClick={onMenuItemClick}
                         defaultOpenKeys={["sub1"]}
                         selectedKeys={[current]}
                         mode="inline"
