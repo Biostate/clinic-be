@@ -19,6 +19,30 @@ class UserController extends Controller
 
     public function create()
     {
-        return Inertia::render('Admin/App/Users/create');
+        return Inertia::render('Admin/App/Users/form');
+    }
+
+    public function edit(Request $request, User $user)
+    {
+        return Inertia::render('Admin/App/Users/form', [
+            'user' => $user->append('avatar'),
+        ]);
+    }
+
+    public function update(Request $request, User $user)
+    {
+        // Todo add password validation
+        // Todo: add role
+        $validated = $request->validate([
+            'name' => ['required', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'surname' => ['required', 'max:255'],
+            'phone' => ['required', 'max:255'],
+            'address' => ['required', 'max:255'],
+        ]);
+
+        $user->update($validated);
+
+        return redirect()->route('admin.users.index')->with('success', 'User updated.');
     }
 }

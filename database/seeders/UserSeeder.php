@@ -15,43 +15,53 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'Özgür Özarpacı',
+                'name' => 'Özgür',
+                'surname' => 'Özarpacı',
                 'email' => 'oozarpac@gmail.com',
             ],
             [
-                'name' => 'Hacer Kılıç',
+                'name' => 'Hacer',
+                'surname' => 'Kılıç',
                 'email' => 'khacer001@gmail.com',
             ],
             [
-                'name' => 'Ali Asım Bulut',
+                'name' => 'Ali Asım',
+                'surname' => 'Bulut',
                 'email' => 'aliasim1625@gmail.com',
             ],
             [
-                'name' => 'Osman Gürlek',
+                'name' => 'Osman',
+                'surname' => 'Gürlek',
                 'email' => 'osmangurlek10@gmail.com',
             ],
             [
-                'name' => 'Sinem Kadakal',
+                'name' => 'Sinem',
+                'surname' => 'Kadakal',
                 'email' => 'sinemkadakall@gmail.com',
             ],
             [
-                'name' => 'Betül Mollamusa',
+                'name' => 'Betül',
+                'surname' => 'Mollamusa',
                 'email' => 'mullamusabetul@gmail.com',
             ],
             [
-                'name' => 'Enes Kaan Kaplan',
+                'name' => 'Enes Kaan',
+                'surname' => 'Kaplan',
                 'email' => 'erciyes1030510395@gmail.com',
             ],
             [
-                'name' => 'Muhammed Fatih Culfa',
+                'name' => 'Muhammed Fatih',
+                'surname' => 'Culfa',
                 'email' => 'mfthclf@gmail.com',
             ],
             [
-                'name' => 'Esra Molla',
+                'name' => 'Esra',
+                'surname' => 'Molla',
                 'email' => 'esra.molla20@gmail.com',
             ],
             [
-                'name' => 'İsmail Yiğit İzmir',
+                'name' => 'İsmail Yiğit',
+                'surname' => 'İzmir',
                 'email' => 'y.izmir2000@gmail.com',
             ],
         ];

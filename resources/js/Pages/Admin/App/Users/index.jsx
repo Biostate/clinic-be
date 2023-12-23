@@ -2,6 +2,7 @@ import AuthenticatedLayout from "@/Pages/Admin/Layout/AuthenticatedLayout.jsx";
 import Calendar from '@/Components/Calendar';
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Button, Table, Avatar, Space} from 'antd';
+import {router} from "@inertiajs/react";
 
 const columns = [
   {
@@ -26,7 +27,9 @@ const columns = [
       key: 'action',
       render: (_, record) => (
           <Space size="middle">
-            <Button type="dashed">
+            <Button onClick={() => {
+                router.get('/admin/users/' + record.id + '/edit');
+            }} type="dashed">
               Düzenle
             </Button>
             <Button type="primary" danger>
