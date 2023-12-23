@@ -16,4 +16,14 @@ class RequestController extends Controller
     public function advanceRequest(){
         return Inertia::render('Admin/App/AdvanceRequest/index');
     }
+
+
+    public function leaveRequests(){
+        return Inertia::render('Admin/App/LeaveRequests/index');
+    }
+
+
+    public function advanceRequests(){
+        return Inertia::render('Admin/App/AdvanceRequests/index');
+    }
 }
