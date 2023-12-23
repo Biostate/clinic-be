@@ -15,4 +15,11 @@ class AuthController extends Controller
             'status' => session('status'),
         ]);
     }
+
+    public function employeeLogin()
+    {
+        return Inertia::render('Admin/Auth/EmployeeLogin',[
+            'status' => session('status'),
+        ]);
+    }
 }
