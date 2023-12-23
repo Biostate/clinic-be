@@ -7,49 +7,48 @@ const MyAdvances = ({ auth }) => {
 
     const columns = [
         {
-          title: 'İzin Türü',
+          title: 'Türü',
           dataIndex: 'type',
           key: 'type',
           render: (text) => <a>{text}</a>,
         },
         {
-          title: 'İzin Süresi',
-          dataIndex: 'duration',
-          key: 'duration',
+          title: 'Miktar',
+          dataIndex: 'quantity',
+          key: 'quantity',
         },
         {
-          title: 'İzin Başlangıç Tarihi',
-          dataIndex: 'startDate',
-          key: 'startDate',
+          title: 'Tarih',
+          dataIndex: 'Date',
+          key: 'Date',
         },
         {
           title: 'Durum ',
           key: 'tags',
           dataIndex: 'tags',
         }
-        
       ];
       const data = [
         {
           key: '1',
-          type: 'Ücretsiz İzin',
-          duration: "2Gün" ,
-          startDate: 'New York No. 1 Lake Park',
-          tags: ['nice', 'developer'],
+          type: 'Avans',
+          quantity: "10.000₺" ,
+          Date: '09:30:12 - 01/03/23',
+          tags: ""
         },
         {
           key: '2',
-          type: 'Jim Green',
-          duration: 42,
-          startDate: 'London No. 1 Lake Park',
-          tags: ['loser'],
+          type: 'Avans',
+          quantity: "10.000₺",
+          Date: '09:30:12 - 01/03/23',
+          tags: "",
         },
         {
           key: '3',
-          type: 'Joe Black',
-          duration: 32,
-          startDate: 'Sydney No. 1 Lake Park',
-          tags: ['cool', 'teacher'],
+          type: 'Avans',
+          quantity: "10.000₺",
+          Date: '09:30:12 - 01/03/23',
+          tags: ""
         }
       ];
     return (
