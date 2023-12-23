@@ -18,42 +18,23 @@ import {
     FolderOpenOutlined,
 } from "@ant-design/icons";
 import {pollingUserActive, requestUserActive} from "@/utils/pollingUserActive.js";
+import menuItems from "@/utils/menuItems.jsx";
 
 const { Header, Content, Sider } = Layout;
-
-function getItem(label, key, icon, children, type) {
-    return {
-        key,
-        icon,
-        children,
-        label,
-        type,
-    };
-}
-const itemss = [
-    getItem("Talep Oluştur", "1", <MailOutlined />, [
-        getItem("İzin Talebi", "2"),
-        getItem("Avans Talebi", "3"),
-    ]),
-    getItem("Toplantı Oluştur", "4", <CommentOutlined />),
-    getItem("Ödeme Durumu", "5", <PayCircleOutlined />),
-    getItem("İzin Durumu", "6", <CalendarOutlined />),
-    getItem("To-Do List", "7", <FolderOpenOutlined />),
-];
 
 const items = [
     {
         label: 'Profili Düzenle',
-    key: '1',
-  },
-  {
-    label: 'Dil Seçenekleri',
-    key: '2',
-  },
-  {
-    label: 'Çıkış',
-    key: '3',
-  },
+        key: '1',
+    },
+    {
+        label: 'Dil Seçenekleri',
+        key: '2',
+    },
+    {
+        label: 'Çıkış',
+        key: '3',
+    },
 ];
 
 const url =
@@ -123,13 +104,8 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
                         defaultOpenKeys={["sub1"]}
                         selectedKeys={[current]}
                         mode="inline"
-                        items={itemss}
+                        items={menuItems}
                     />
-                    <div style={{ padding: "16px", textAlign: "center" }}>
-                        <img
-                            
-                        />
-                    </div>
                 </Sider>
                 <Layout
                     style={{
