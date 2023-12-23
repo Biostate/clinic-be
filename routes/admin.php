@@ -19,10 +19,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('/todo', [\App\Http\Controllers\Admin\TodoController::class, 'index'])
         ->name('admin.todo');
+
+    Route::get('/my-profile', [\App\Http\Controllers\Admin\ProfileController::class, 'index'])
+        ->name('admin.myProfile');
 });
 
 
 Route::prefix('admin')->middleware('guest')->group(function () {
     Route::get('/login', [\App\Http\Controllers\Admin\AuthController::class, 'login'])
-        ->name('admin.profile');
+        ->name('admin.login');
 });
