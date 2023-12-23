@@ -13,7 +13,7 @@ const UserCreate = ({ auth }) => {
         </div>
         <div className="flex justify-center">
           <div >
-            <img src="/assets/images/kayıt_olustur.png" alt="Kullanici" />
+            <img src="/assets/images/kayıt_olustur.svg" alt="Kullanici" />
           </div>
         </div>
         <div className="flex flex-col mt-5">
