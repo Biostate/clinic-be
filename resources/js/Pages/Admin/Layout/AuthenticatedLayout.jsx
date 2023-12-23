@@ -30,7 +30,7 @@ const items = [
     },
     {
         label: 'Çıkış',
-        key: '3',
+        key: 'logout',
     },
 ];
 
@@ -54,6 +54,13 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
         setOpenKeys(openKeys);
         setCurrent(current);
         router.get(current)
+    }
+
+    const dropdownClicked = ({ key }) => {
+        if (key === 'logout') {
+            if (confirm('Çıkış yapmak istediğinize emin misiniz?'))
+                router.post('/logout')
+        }
     }
 
     return (
@@ -83,14 +90,13 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
                             <Dropdown
                                 menu={{
                                     items,
+                                    onClick: dropdownClicked
                                 }}
                             >
-                                <a onClick={(e) => e.preventDefault()}>
-                                    <Space>
-                                        <Avatar src={url} />
-                                        <DownOutlined className="text-white" />
-                                    </Space>
-                                </a>
+                                <Space>
+                                    <Avatar src={url} />
+                                    <DownOutlined className="text-white" />
+                                </Space>
                             </Dropdown>
                         </Space>
                     </div>
