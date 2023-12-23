@@ -16,6 +16,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('/meeting', [\App\Http\Controllers\Admin\MeetingController::class, 'meeting'])
         ->name('admin.meeting');
+
+    Route::get('/todo', [\App\Http\Controllers\Admin\TodoController::class, 'index'])
+        ->name('admin.todo');
+
+    Route::get('/my-advances', [\App\Http\Controllers\Admin\EmployeeController::class, 'myAdvances'])
+        ->name('admin.myAdvances');
+    Route::get('/my-leaves', [\App\Http\Controllers\Admin\EmployeeController::class, 'myLeaves'])
+        ->name('admin.myLeaves');
 });
 
 
