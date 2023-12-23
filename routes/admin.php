@@ -19,6 +19,16 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('/todo', [\App\Http\Controllers\Admin\TodoController::class, 'index'])
         ->name('admin.todo');
+
+    Route::middleware('api')->group(function () {
+        Route::post('/user/active', function (){
+            // return okay
+            return response()->json([
+                'status' => 'ok'
+            ]);
+        })
+            ->name('admin.active');
+    });
 });
 
 
