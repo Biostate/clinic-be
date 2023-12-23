@@ -16,6 +16,19 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('/meeting', [\App\Http\Controllers\Admin\MeetingController::class, 'meeting'])
         ->name('admin.meeting');
+
+    Route::get('/todo', [\App\Http\Controllers\Admin\TodoController::class, 'index'])
+        ->name('admin.todo');
+
+    Route::middleware('api')->group(function () {
+        Route::post('/user/active', function (){
+            // return okay
+            return response()->json([
+                'status' => 'ok'
+            ]);
+        })
+            ->name('admin.active');
+    });
 });
 
 
