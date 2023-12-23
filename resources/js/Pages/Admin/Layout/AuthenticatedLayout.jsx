@@ -1,139 +1,144 @@
-
+import {useEffect, useState} from "react";
 import {
-    ToolOutlined,
-    UserOutlined,
-} from '@ant-design/icons';
-import {Breadcrumb, Layout, Menu, theme} from 'antd';
-import {useState} from "react";
-import { router } from '@inertiajs/react'
-const { Header, Content, Footer, Sider } = Layout;
-function getItem(label, key, icon, children) {
+    Breadcrumb,
+    Layout,
+    Dropdown,
+    Menu,
+    Space,
+    Button,
+    Avatar,
+} from "antd";
+import {
+    DownOutlined,
+    CommentOutlined,
+    MailOutlined,
+    BellOutlined,
+    CalendarOutlined,
+    PayCircleOutlined,
+    FolderOpenOutlined,
+} from "@ant-design/icons";
+import {pollingUserActive, requestUserActive} from "@/utils/pollingUserActive.js";
+
+const { Header, Content, Sider } = Layout;
+
+function getItem(label, key, icon, children, type) {
     return {
         key,
         icon,
         children,
         label,
+        type,
     };
 }
+const itemss = [
+    getItem("Talep Oluştur", "1", <MailOutlined />, [
+        getItem("İzin Talebi", "2"),
+        getItem("Avans Talebi", "3"),
+    ]),
+    getItem("Toplantı Oluştur", "4", <CommentOutlined />),
+    getItem("Ödeme Durumu", "5", <PayCircleOutlined />),
+    getItem("İzin Durumu", "6", <CalendarOutlined />),
+    getItem("To-Do List", "7", <FolderOpenOutlined />),
+];
 
 const items = [
     {
-        label:'Talep Oluştur',
-        key:null,
-        children: [
-            {
-                label:'İzin',
-                key:'/admin/request/leave',
-            },
-            {
-                label:'Avans',
-                key:'/admin/request/advance',
-            }
-        ]
-    },
-    {
-        label:'Toplantı Oluştur',
-        key:'/admin/meeting'
-
-    },
-    {
-        label:'Ödeme Durumu',
-        key:'/admin/payment'
-    },
-    {
-        label:'Çıkış Yap',
-        key:'logout',
-        icon:<UserOutlined/>
-    }
+        label: 'Profili Düzenle',
+    key: '1',
+  },
+  {
+    label: 'Dil Seçenekleri',
+    key: '2',
+  },
+  {
+    label: 'Çıkış',
+    key: '3',
+  },
 ];
 
-const items1 = ['1', '2', '3'].map((key) => ({
-    key,
-    label: `nav ${key}`,
-}));
+const url =
+    "https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg";
 
+export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
+    const [theme, setTheme] = useState("dark");
+    const [current, setCurrent] = useState("1");
 
-export default function AuthenticatedLayout({ children, breadcrumbs = [] }){
-    const [collapsed, setCollapsed] = useState(false);
-    const {
-        token: { colorBgContainer, borderRadiusLG },
-    } = theme.useToken();
+    const onClick = (e) => {
+        console.log("click ", e);
+        setCurrent(e.key);
+    };
 
-    const getDefaultOpenKeys = (pathname) => {
-        // find pathname in item children then return parent key
-        const item = items.find((item) => {
-            if (item.children) {
-                return item.children.find((child) => child.key === pathname);
-            }
-            return false;
-        });
-        if (item) {
-            return [item.key];
-        }
-        return [];
-    }
+    // polling backend every 15 seconds to set user's active status
+    useEffect(() => {
+        requestUserActive();
+        const interval = pollingUserActive(15);
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <Layout
             style={{
-                minHeight: '100vh',
+                minHeight: "100vh",
             }}
         >
-            <Header
-                style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                }}
-            >
-                <div className="h-full">
-                    <img className="h-full" src="/assets/images/logo.png" alt="logo" />
+            <Header>
+                <div className="flex justify-between">
+                    <div className=" flex gap-2  ">
+                        <div className="pt-1">
+                            <img src="\assets\images\Logo.png" alt="" />
+                        </div>
+                        <div className="pt-4">
+                            <img
+                                src="\assets\images\International_Clinics.png"
+                                alt=""
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <Space size={15}>
+                            <Button type="primary" icon={<MailOutlined />} />
+                            <Button type="primary" icon={<BellOutlined />} />
+
+                            <Dropdown
+                                menu={{
+                                    items,
+                                }}
+                            >
+                                <a onClick={(e) => e.preventDefault()}>
+                                    <Space>
+                                        <Avatar src={url} />
+                                        <DownOutlined className="text-white" />
+                                    </Space>
+                                </a>
+                            </Dropdown>
+                        </Space>
+                    </div>
                 </div>
-                <Menu
-                    theme="dark"
-                    mode="horizontal"
-                    defaultSelectedKeys={['2']}
-                    items={items1}
-                    style={{
-                        flex: 1,
-                        minWidth: 0,
-                    }}
-                />
             </Header>
             <Layout>
-                <Sider
-                    width={200}
-                    style={{
-                        background: colorBgContainer,
-                    }}
-                >
+                <Sider>
                     <Menu
-                        //defaultSelectedKeys={[pathname]}
-                        // defaultOpenKeys={getDefaultOpenKeys(pathname)}
+                        theme={theme}
+                        onClick={onClick}
+                        defaultOpenKeys={["sub1"]}
+                        selectedKeys={[current]}
                         mode="inline"
-                        style={{
-                            height: '100%',
-                            borderRight: 0,
-                        }}
-                        items={items}
-                        onClick={(e) => {
-                            if (!e.key) return;
-
-                            if (e.key === 'logout') {
-                                router.get('/app/login');
-                            }else {
-                                router.get(e.key);
-                            }
-                        }}
+                        items={itemss}
                     />
+                    <div style={{ padding: "16px", textAlign: "center" }}>
+                        <img
+                            
+                        />
+                    </div>
                 </Sider>
                 <Layout
                     style={{
-                        padding: '0 24px 24px',
+                        padding: "0 24px 24px",
                     }}
                 >
                     <Breadcrumb
                         style={{
-                            margin: '16px 0',
+                            margin: "16px 0",
                         }}
                     >
                         {breadcrumbs.map((breadcrumb) => breadcrumb)}
@@ -143,8 +148,6 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }){
                             padding: 24,
                             margin: 0,
                             minHeight: 280,
-                            background: colorBgContainer,
-                            borderRadius: borderRadiusLG,
                         }}
                     >
                         {children}
