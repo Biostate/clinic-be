@@ -1,47 +1,81 @@
 import AuthenticatedLayout from "@/Pages/Admin/Layout/AuthenticatedLayout.jsx";
-import Calendar from "@/Components/Calendar";
 
-import { Input, } from "antd";
+import React, { useState } from 'react';
+import { PlusCircleOutlined,UserOutlined } from '@ant-design/icons';
+import { Input,Button,Modal,Avatar, Space} from "antd";
 
 import TodoListItem from "@/Components/TodoListItem";
+
 const { Search } = Input;
 
-const todos = [
-    {
-        id: 1,
-        title: "Meeting with CEO",
-        date: "2021-04-01",
-        status: "done",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis pretium massa. Aliquam erat volutpat.",
-    },
-];
 
-const colorVariants = {
-    bg_violet: 'bg-violet-50 ',
-    bg_green: 'bg-green-50 ',
-    bg_amber: 'bg-amber-50 ',
-    bg_pink: 'bg-pink-50 ',
-    
-    violet: 'bg-violet-500 ',
-    green: 'bg-green-600 ',
-    yellow: 'bg-yellow-400 ',
-    pink: 'bg-pink-600 ',
 
-  }
 
 const Todo = ({ auth }) => {
     const onSearch = (value, _e, info) => console.log(info?.source, value);
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+    
     return (
         <>
-            <div className="flex flex-col gap-5 p-6 font-['Inter']  ">
+            <div className="flex flex-col gap-5 p-6 font-sans  ">
                 {/* header */}
                 <div className="flex justify-between   ">
-                    <div>
-                        <h1 className="text-zinc-800 text-2xl font-semibold  leading-9 tracking-tight">
-                            To-Do List
-                        </h1>
+                    <div className="flex gap-4 items-center justify-between " >
+                        <div className="mb-3" >
+                            <h1 className="text-zinc-800 text-2xl font-semibold  leading-9 tracking-tight">
+                                To-Do List
+                            </h1>
+                        </div>
+                        <div className=" flex items-center " >
+                            <button onClick={showModal} type="button" className=" px-5 py-2 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                <div className="flex gap-2" >
+                                    <div >
+                                        <p>Görev Ata</p>
+                                    </div>
+                                    <div>
+                                        <PlusCircleOutlined />
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                                <h2 className="text-center text-neutral-800 text-3xl font-medium leading-9 tracking-tight">Task</h2>
+                                <div className="flex flex-col my-2 " >
+                                    <h2 className=" text-xl text-black  font-medium  tracking-tight" >Task Başlığı:</h2>
+                                    <Input name="date"  className=" mt-2 rounded-md mb-2 " />
+                                    <h2 className=" text-xl text-black  font-medium  tracking-tight" >Task İçeriği:</h2>
+                                    <textarea name="content"  cols="10" rows="5" className="mt-2 rounded-md mb-2 " placeholder="Görev İçeriğini Giriniz" ></textarea>
+                                    <h2 className=" text-xl text-black  font-medium  tracking-tight" >Katılımcılar:</h2>
+                                        <div className="mx-4 my-2 " >
+                                            <Space>
+                                                <Avatar
+                                                    style={{
+                                                        backgroundColor: '#87d068',
+                                                    }}
+                                                    icon={<UserOutlined />}
+                                                />
+                                            </Space>
+                                        </div>
+                                    <div className="flex flex-col justify-center" >
+                                        <label className="font-semibold" htmlFor="date">Task Son Tarihi:</label>
+                                        <Input name="date" placeholder=". ./. ./. . . . "  className=" mt-2 rounded-md  " />
+                                    </div>
+                                    
+                                </div>
+                            </Modal>
+                                
+                        </div>
+                        
                     </div>
                     <div>
                         <Search
@@ -61,10 +95,10 @@ const Todo = ({ auth }) => {
                             Waiting
                         </h2>
                     </div>
-                    <TodoListItem date="Son Gün" />
-                    <TodoListItem date="Son 2 Gün" />
-                    <TodoListItem date="12/09/2023" />
-                    <TodoListItem date="Son 4 Gün" />
+                    <TodoListItem squareColor="green" dateBackgroundColor="pink" dateTextColor="pink"   date="Son Gün" />
+                    <TodoListItem squareColor="green" dateBackgroundColor="violet" dateTextColor="violet"  date="Son 2 Gün" />
+                    <TodoListItem squareColor="green" dateBackgroundColor="green" dateTextColor="green"  date="12/09/2023" />
+                    <TodoListItem squareColor="green" dateBackgroundColor="yellow" dateTextColor="yellow"  date="Son 4 Gün" />
                 </div>
                 {/* On-Process */}
                 <div>
@@ -73,10 +107,10 @@ const Todo = ({ auth }) => {
                             On-Process
                         </h2>
                     </div>
-                    <TodoListItem date="Son Gün" />
-                    <TodoListItem date="Son 2 Gün"  />
-                    <TodoListItem date="12/09/2023" />
-                    <TodoListItem date="Son 4 Gün" />
+                    <TodoListItem squareColor="violet" dateBackgroundColor="pink" dateTextColor="pink" date="Son Gün" />
+                    <TodoListItem squareColor="violet" dateBackgroundColor="violet" dateTextColor="violet" date="Son 2 Gün"  />
+                    <TodoListItem squareColor="violet" dateBackgroundColor="green" dateTextColor="green"  date="12/09/2023" />
+                    <TodoListItem squareColor="violet" dateBackgroundColor="yellow" dateTextColor="yellow" date="Son 4 Gün" />
                     
                 </div>
                 {/* Pending */}
@@ -86,7 +120,7 @@ const Todo = ({ auth }) => {
                             On-Process
                         </h2>
                     </div>
-                    <TodoListItem date="Bitiş Tarihi " />
+                    <TodoListItem squareColor="yellow" dateBackgroundColor="pink" dateTextColor="pink" date="Bitiş Tarihi " />
                 </div>
                 
             </div>
