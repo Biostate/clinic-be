@@ -25,7 +25,7 @@ Generate application key.
 php artisan key:generate
 ```
 
-Run install project command.
+c
 ```
 php artisan project:install
 ```

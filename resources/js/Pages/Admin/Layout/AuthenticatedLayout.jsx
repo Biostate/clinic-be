@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import {
     Breadcrumb,
     Layout,
@@ -7,29 +7,29 @@ import {
     Space,
     Button,
     Avatar,
+    Drawer,
 } from "antd";
+import { DownOutlined, MailOutlined, BellOutlined,MessageOutlined } from "@ant-design/icons";
 import {
-    DownOutlined,
-    MailOutlined,
-    BellOutlined,
-} from "@ant-design/icons";
-import {pollingUserActive, requestUserActive} from "@/utils/pollingUserActive.js";
+    pollingUserActive,
+    requestUserActive,
+} from "@/utils/pollingUserActive.js";
 import menuItems from "@/utils/menuItems.jsx";
 
 const { Header, Content, Sider } = Layout;
 
 const items = [
     {
-        label: 'Profili Düzenle',
-        key: '1',
+        label: "Profili Düzenle",
+        key: "1",
     },
     {
-        label: 'Dil Seçenekleri',
-        key: '2',
+        label: "Dil Seçenekleri",
+        key: "2",
     },
     {
-        label: 'Çıkış',
-        key: '3',
+        label: "Çıkış",
+        key: "3",
     },
 ];
 
@@ -51,6 +51,13 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
         const interval = pollingUserActive(15);
         return () => clearInterval(interval);
     }, []);
+    const [open, setOpen] = useState(false);
+    const showDrawer = () => {
+        setOpen(true);
+    };
+    const onClose = () => {
+        setOpen(false);
+    };
 
     return (
         <Layout
@@ -75,6 +82,8 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
                         <Space size={15}>
                             <Button type="primary" icon={<MailOutlined />} />
                             <Button type="primary" icon={<BellOutlined />} />
+                            <Button type="primary" icon={<MessageOutlined />}onClick={showDrawer}>
+                            </Button>
 
                             <Dropdown
                                 menu={{
@@ -89,6 +98,14 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
                                 </a>
                             </Dropdown>
                         </Space>
+                        <Drawer
+                            title="Messages"
+                            placement="right"
+                            onClose={onClose}
+                            open={open}
+                        >
+                            <p>Hello...</p>
+                        </Drawer>
                     </div>
                 </div>
             </Header>
