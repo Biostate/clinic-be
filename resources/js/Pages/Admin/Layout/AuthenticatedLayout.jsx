@@ -9,12 +9,18 @@ import {
     Avatar,
     Drawer,
 } from "antd";
-import { DownOutlined, MailOutlined, BellOutlined,MessageOutlined } from "@ant-design/icons";
-import {
-    pollingUserActive,
-    requestUserActive,
-} from "@/utils/pollingUserActive.js";
+import { DownOutlined, MailOutlined, BellOutlined,MessageOutlined,DownOutlined,
+    MailOutlined,
+    BellOutlined,  } from "@ant-design/icons";
+
+import { pollingUserActive,requestUserActive,} from "@/utils/pollingUserActive.js";
+
 import menuItems from "@/utils/menuItems.jsx";
+    
+import {pollingUserActive, requestUserActive} from "@/utils/pollingUserActive.js";
+import {determineOpenKeys, menuItems, onMenuItemClick} from "@/utils/adminMenu.jsx";
+import {router, usePage} from "@inertiajs/react";
+
 
 const { Header, Content, Sider } = Layout;
 
@@ -38,12 +44,9 @@ const url =
 
 export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
     const [theme, setTheme] = useState("dark");
-    const [current, setCurrent] = useState("1");
-
-    const onClick = (e) => {
-        console.log("click ", e);
-        setCurrent(e.key);
-    };
+    const { ziggy } = usePage().props
+    const [current, setCurrent] = useState(ziggy.currentPath);
+    const [openKeys, setOpenKeys] = useState(determineOpenKeys(current));
 
     // polling backend every 15 seconds to set user's active status
     useEffect(() => {
@@ -58,6 +61,19 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
     const onClose = () => {
         setOpen(false);
     };
+
+    const menuItemChanged = (current, openKeys) => {
+        setOpenKeys(openKeys);
+        setCurrent(current);
+        router.get(current)
+    }
+
+    const dropdownClicked = ({ key }) => {
+        if (key === 'logout') {
+            if (confirm('Çıkış yapmak istediğinize emin misiniz?'))
+                router.post('/logout')
+        }
+    }
 
     return (
         <Layout
@@ -88,14 +104,13 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
                             <Dropdown
                                 menu={{
                                     items,
+                                    onClick: dropdownClicked
                                 }}
                             >
-                                <a onClick={(e) => e.preventDefault()}>
-                                    <Space>
-                                        <Avatar src={url} />
-                                        <DownOutlined className="text-white" />
-                                    </Space>
-                                </a>
+                                <Space>
+                                    <Avatar src={url} />
+                                    <DownOutlined className="text-white" />
+                                </Space>
                             </Dropdown>
                         </Space>
                         <Drawer
@@ -113,8 +128,8 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
                 <Sider>
                     <Menu
                         theme={theme}
-                        onClick={onClick}
-                        defaultOpenKeys={["sub1"]}
+                        onClick={(e) => onMenuItemClick(e, menuItemChanged)}
+                        defaultOpenKeys={openKeys}
                         selectedKeys={[current]}
                         mode="inline"
                         items={menuItems}
