@@ -9,13 +9,7 @@ import {
     Avatar,
     Drawer,
 } from "antd";
-import { DownOutlined, MailOutlined, BellOutlined,MessageOutlined,DownOutlined,
-    MailOutlined,
-    BellOutlined,  } from "@ant-design/icons";
-
-import { pollingUserActive,requestUserActive,} from "@/utils/pollingUserActive.js";
-
-import menuItems from "@/utils/menuItems.jsx";
+import { DownOutlined, MailOutlined, BellOutlined,MessageOutlined} from "@ant-design/icons"
     
 import {pollingUserActive, requestUserActive} from "@/utils/pollingUserActive.js";
 import {determineOpenKeys, menuItems, onMenuItemClick} from "@/utils/adminMenu.jsx";
