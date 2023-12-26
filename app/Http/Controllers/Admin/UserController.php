@@ -29,6 +29,24 @@ class UserController extends Controller
         ]);
     }
 
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'surname' => ['required', 'max:255'],
+            'phone' => ['required', 'max:255'],
+            'address' => ['required', 'max:255'],
+        ]);
+
+        $data = $request->only('name', 'email', 'surname', 'phone', 'address');
+        $data['password'] = bcrypt('password');
+
+        User::create($data);
+
+        return redirect()->route('admin.users.index')->with('success', 'User created.');
+    }
+
     public function update(Request $request, User $user)
     {
         // Todo add password validation
@@ -44,5 +62,12 @@ class UserController extends Controller
         $user->update($validated);
 
         return redirect()->route('admin.users.index')->with('success', 'User updated.');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect()->route('admin.users.index')->with('success', 'User deleted.');
     }
 }

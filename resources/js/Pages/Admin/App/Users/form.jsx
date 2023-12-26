@@ -5,13 +5,13 @@ import {useForm} from "@inertiajs/react";
 
 const UserCreate = ({ user }) => {
     const { data, setData, post, processing, errors, reset } = useForm({
-        id: user.id,
-        name: user.name,
-        email: user.email,
+        id: user?.id,
+        name: user?.name,
+        email: user?.email,
         password: '',
-        surname: user.surname,
-        address: user.address,
-        phone: user.phone,
+        surname: user?.surname,
+        address: user?.address,
+        phone: user?.phone,
     });
 
     const formChanged = (e) => {
@@ -69,7 +69,9 @@ const UserCreate = ({ user }) => {
                   </div>
                   <div className="flex justify-center gap-10 mt-5 p-3">
                       <Space size="middle">
-                          <Button htmlType="submit" className="rounded-full" >Güncelle</Button>
+                          <Button htmlType="submit" className="rounded-full" >
+                                {user ? "Güncelle" : "Kaydet"}
+                          </Button>
                           <Button className="rounded-full" type="primary" danger>İptal</Button>
                       </Space>
                   </div>
