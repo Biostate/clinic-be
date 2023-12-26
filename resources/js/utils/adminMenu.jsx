@@ -59,6 +59,6 @@ export const menuItems = [
         getItem("Oluştur", "/admin/users/create"),
     ]),
     getItem("Toplantı Oluştur", "/admin/meeting", <CommentOutlined />),
-    getItem("Ödeme Durumu", "5", <PayCircleOutlined />),
-    getItem("İzin Durumu", "6", <CalendarOutlined />),
+    getItem("Ödeme Durumu", "/admin/my-advances", <PayCircleOutlined />),
+    getItem("İzin Durumu", "/admin/my-leaves", <CalendarOutlined />),
 ];
