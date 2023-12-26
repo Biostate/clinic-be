@@ -58,7 +58,7 @@ export const menuItems = [
         getItem("Listeleme", "/admin/users"),
         getItem("Oluştur", "/admin/users/create"),
     ]),
-    getItem("Toplantı Oluştur", "/meeting", <CommentOutlined />),
+    getItem("Toplantı Oluştur", "/admin/meeting", <CommentOutlined />),
     getItem("Ödeme Durumu", "5", <PayCircleOutlined />),
     getItem("İzin Durumu", "6", <CalendarOutlined />),
 ];
