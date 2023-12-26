@@ -45,6 +45,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         })
             ->name('admin.active');
     });
+
+    Route::get('/my-advances', [\App\Http\Controllers\Admin\EmployeeController::class, 'myAdvances'])
+        ->name('admin.myAdvances');
+    Route::get('/my-leaves', [\App\Http\Controllers\Admin\EmployeeController::class, 'myLeaves'])
+        ->name('admin.myLeaves');
 });
 
 
