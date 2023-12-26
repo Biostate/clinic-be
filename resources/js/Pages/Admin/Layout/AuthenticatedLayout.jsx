@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import {
     Breadcrumb,
     Layout,
@@ -7,53 +7,30 @@ import {
     Space,
     Button,
     Avatar,
+    Drawer,
 } from "antd";
-import {
-    DownOutlined,
-    CommentOutlined,
-    MailOutlined,
-    BellOutlined,
-    CalendarOutlined,
-    PayCircleOutlined,
-    FolderOpenOutlined,
-} from "@ant-design/icons";
+import { DownOutlined, MailOutlined, BellOutlined,MessageOutlined} from "@ant-design/icons"
+    
 import {pollingUserActive, requestUserActive} from "@/utils/pollingUserActive.js";
+import {determineOpenKeys, menuItems, onMenuItemClick} from "@/utils/adminMenu.jsx";
+import {router, usePage} from "@inertiajs/react";
+
 
 const { Header, Content, Sider } = Layout;
 
-function getItem(label, key, icon, children, type) {
-    return {
-        key,
-        icon,
-        children,
-        label,
-        type,
-    };
-}
-const itemss = [
-    getItem("Talep Oluştur", "1", <MailOutlined />, [
-        getItem("İzin Talebi", "2"),
-        getItem("Avans Talebi", "3"),
-    ]),
-    getItem("Toplantı Oluştur", "4", <CommentOutlined />),
-    getItem("Ödeme Durumu", "5", <PayCircleOutlined />),
-    getItem("İzin Durumu", "6", <CalendarOutlined />),
-    getItem("To-Do List", "7", <FolderOpenOutlined />),
-];
-
 const items = [
     {
-        label: 'Profili Düzenle',
-    key: '1',
-  },
-  {
-    label: 'Dil Seçenekleri',
-    key: '2',
-  },
-  {
-    label: 'Çıkış',
-    key: '3',
-  },
+        label: "Profili Düzenle",
+        key: "1",
+    },
+    {
+        label: "Dil Seçenekleri",
+        key: "2",
+    },
+    {
+        label: "Çıkış",
+        key: "3",
+    },
 ];
 
 const url =
@@ -61,12 +38,9 @@ const url =
 
 export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
     const [theme, setTheme] = useState("dark");
-    const [current, setCurrent] = useState("1");
-
-    const onClick = (e) => {
-        console.log("click ", e);
-        setCurrent(e.key);
-    };
+    const { ziggy } = usePage().props
+    const [current, setCurrent] = useState(ziggy.currentPath);
+    const [openKeys, setOpenKeys] = useState(determineOpenKeys(current));
 
     // polling backend every 15 seconds to set user's active status
     useEffect(() => {
@@ -74,6 +48,26 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
         const interval = pollingUserActive(15);
         return () => clearInterval(interval);
     }, []);
+    const [open, setOpen] = useState(false);
+    const showDrawer = () => {
+        setOpen(true);
+    };
+    const onClose = () => {
+        setOpen(false);
+    };
+
+    const menuItemChanged = (current, openKeys) => {
+        setOpenKeys(openKeys);
+        setCurrent(current);
+        router.get(current)
+    }
+
+    const dropdownClicked = ({ key }) => {
+        if (key === 'logout') {
+            if (confirm('Çıkış yapmak istediğinize emin misiniz?'))
+                router.post('/logout')
+        }
+    }
 
     return (
         <Layout
@@ -98,20 +92,29 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
                         <Space size={15}>
                             <Button type="primary" icon={<MailOutlined />} />
                             <Button type="primary" icon={<BellOutlined />} />
+                            <Button type="primary" icon={<MessageOutlined />}onClick={showDrawer}>
+                            </Button>
 
                             <Dropdown
                                 menu={{
                                     items,
+                                    onClick: dropdownClicked
                                 }}
                             >
-                                <a onClick={(e) => e.preventDefault()}>
-                                    <Space>
-                                        <Avatar src={url} />
-                                        <DownOutlined className="text-white" />
-                                    </Space>
-                                </a>
+                                <Space>
+                                    <Avatar src={url} />
+                                    <DownOutlined className="text-white" />
+                                </Space>
                             </Dropdown>
                         </Space>
+                        <Drawer
+                            title="Messages"
+                            placement="right"
+                            onClose={onClose}
+                            open={open}
+                        >
+                            <p>Hello...</p>
+                        </Drawer>
                     </div>
                 </div>
             </Header>
@@ -119,17 +122,12 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
                 <Sider>
                     <Menu
                         theme={theme}
-                        onClick={onClick}
-                        defaultOpenKeys={["sub1"]}
+                        onClick={(e) => onMenuItemClick(e, menuItemChanged)}
+                        defaultOpenKeys={openKeys}
                         selectedKeys={[current]}
                         mode="inline"
-                        items={itemss}
+                        items={menuItems}
                     />
-                    <div style={{ padding: "16px", textAlign: "center" }}>
-                        <img
-                            
-                        />
-                    </div>
                 </Sider>
                 <Layout
                     style={{

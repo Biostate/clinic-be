@@ -37,6 +37,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'ziggy' => fn () => [
                 ...(new Ziggy)->toArray(),
+                'currentPath' => '/'.$request->path(),
                 'location' => $request->url(),
             ],
         ];
