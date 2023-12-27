@@ -1,6 +1,6 @@
 import AuthenticatedLayout from "@/Pages/Admin/Layout/AuthenticatedLayout.jsx";
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { Input, Button, Space } from 'antd';
+import {Input, Button, Space, Select} from 'antd';
 import {useForm} from "@inertiajs/react";
 
 const UserCreate = ({ user }) => {
@@ -9,9 +9,11 @@ const UserCreate = ({ user }) => {
         name: user?.name,
         email: user?.email,
         password: '',
+        password_confirmation: '',
         surname: user?.surname,
         address: user?.address,
         phone: user?.phone,
+        role: user?.role,
     });
 
     const formChanged = (e) => {
@@ -65,7 +67,16 @@ const UserCreate = ({ user }) => {
                       <Input.Password onChange={formChanged} id="password" name="password" className="rounded-md p-3 mt-5 max-w-md" placeholder="Şifre" iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}></Input.Password>
                   </div>
                   <div className="flex justify-center">
-                      <Input value={data.roleId} onChange={formChanged} id="roleId" name="roleId" className="rounded-md p-3 mt-5 max-w-md" placeholder="Rol"></Input>
+                      <Select
+                          defaultValue={data.role}
+                          style={{ width: '100%' }}
+                          id="role" name="role"
+                          onChange={formChanged}
+                          options={[
+                              { value: 'user', label: 'Kullanıcı' },
+                              { value: 'admin', label: 'Admin' },
+                          ]}
+                      />
                   </div>
                   <div className="flex justify-center gap-10 mt-5 p-3">
                       <Space size="middle">

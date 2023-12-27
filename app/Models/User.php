@@ -53,4 +53,9 @@ class User extends Authenticatable
         // Todo: Add default avatar
         return 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($this->email)));
     }
+
+    public function getRoleAttribute()
+    {
+        return $this->roles->first()->name;
+    }
 }

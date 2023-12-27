@@ -10,11 +10,10 @@ import {
     Drawer,
 } from "antd";
 import { DownOutlined, MailOutlined, BellOutlined,MessageOutlined} from "@ant-design/icons"
-    
-import {pollingUserActive, requestUserActive} from "@/utils/pollingUserActive.js";
-import {determineOpenKeys, menuItems, onMenuItemClick} from "@/utils/adminMenu.jsx";
-import {router, usePage} from "@inertiajs/react";
 
+import {pollingUserActive, requestUserActive} from "@/utils/pollingUserActive.js";
+import {determineOpenKeys, getMenuItems, onMenuItemClick} from "@/utils/adminMenu.jsx";
+import {router, usePage} from "@inertiajs/react";
 
 const { Header, Content, Sider } = Layout;
 
@@ -39,8 +38,10 @@ const url =
 export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
     const [theme, setTheme] = useState("dark");
     const { ziggy } = usePage().props
+    const { auth } = usePage().props
     const [current, setCurrent] = useState(ziggy.currentPath);
     const [openKeys, setOpenKeys] = useState(determineOpenKeys(current));
+    const menuItems = getMenuItems(auth.user);
 
     // polling backend every 15 seconds to set user's active status
     useEffect(() => {
