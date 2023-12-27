@@ -52,6 +52,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         ->name('admin.myAdvances');
     Route::get('/my-leaves', [\App\Http\Controllers\Admin\EmployeeController::class, 'myLeaves'])
         ->name('admin.myLeaves');
+
+    Route::get('/my-profile', [\App\Http\Controllers\Admin\ProfileController::class, 'index'])
+        ->name('admin.myProfile');
 });
 
 
