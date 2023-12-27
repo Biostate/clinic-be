@@ -25,7 +25,7 @@ class UserController extends Controller
     public function edit(Request $request, User $user)
     {
         return Inertia::render('Admin/App/Users/form', [
-            'user' => $user->append('avatar'),
+            'user' => $user->append(['avatar', 'role']),
         ]);
     }
 
@@ -37,12 +37,15 @@ class UserController extends Controller
             'surname' => ['required', 'max:255'],
             'phone' => ['required', 'max:255'],
             'address' => ['required', 'max:255'],
+            'role' => 'required|in:user,admin',
+            'password' => 'required|confirmed|min:8',
         ]);
 
         $data = $request->only('name', 'email', 'surname', 'phone', 'address');
-        $data['password'] = bcrypt('password');
+        $data['password'] = bcrypt($validated['password']);
 
-        User::create($data);
+        $user = User::create($data);
+        $user->assignRole($validated['role']);
 
         return redirect()->route('admin.users.index')->with('success', 'User created.');
     }
@@ -59,7 +62,18 @@ class UserController extends Controller
             'address' => ['required', 'max:255'],
         ]);
 
+        if ($request->has('password')) {
+            $validated = $request->validate([
+                'password' => 'required|confirmed|min:8',
+            ]);
+            $validated['password'] = bcrypt($validated['password']);
+        }
+
         $user->update($validated);
+
+        if ($request->has('role')) {
+            $user->syncRoles($request->role);
+        }
 
         return redirect()->route('admin.users.index')->with('success', 'User updated.');
     }

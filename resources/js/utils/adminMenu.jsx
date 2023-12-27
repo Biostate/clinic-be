@@ -7,13 +7,14 @@ import {
 } from "@ant-design/icons";
 import {router} from "@inertiajs/react";
 
-function getItem(label, key, icon, children, type) {
+function getItem(label, key, icon, children, type, roles= ['user', 'admin']) {
     return {
         key,
         icon,
         children,
         label,
         type,
+        roles,
     };
 }
 
@@ -45,20 +46,35 @@ export const onMenuItemClick = (e, callback) => {
 };
 
 export const menuItems = [
-    getItem("Talep Oluştur (Personel)", 'requests', <MailOutlined />, [
+    getItem("Talep Oluştur", 'requests', <MailOutlined />, [
         getItem("İzin Talebi", "/admin/requests/leave/create"),
         getItem("Avans Talebi", "/admin/requests/advance/create"),
-    ]),
-    getItem("Talepler (Yönetici)", 'requests-admin', <MailOutlined />, [
+    ], null,['user']),
+    getItem("Talepler", 'requests-admin', <MailOutlined />, [
         getItem("İzin Talepleri", "/admin/requests/leave"),
         getItem("Avans Talepleri", "/admin/requests/advance"),
-    ]),
+    ], null, ['admin']),
     getItem("Görevler", "/admin/todo", <FolderOpenOutlined />),
     getItem("Kullanıcılar", 'users', <UserOutlined />, [
         getItem("Listeleme", "/admin/users"),
         getItem("Oluştur", "/admin/users/create"),
-    ]),
+    ], null, ['admin']),
     getItem("Toplantı Oluştur", "/admin/meeting", <CommentOutlined />),
-    getItem("Ödeme Durumu", "/admin/my-advances", <PayCircleOutlined />),
-    getItem("İzin Durumu", "/admin/my-leaves", <CalendarOutlined />),
+    getItem("Ödeme Durumu", "/admin/my-advances", <PayCircleOutlined />,[], null, ['admin']),
+    getItem("İzin Durumu", "/admin/my-leaves", <CalendarOutlined />,[], null, ['admin']),
 ];
+
+export const getMenuItems = (user) => {
+    return menuItems.filter((item) => {
+        console.log(item.roles, user.role)
+        if (item.roles.includes(user.role)) {
+            if (item.children) {
+                item.children = item.children.filter((child) => {
+                    return child.roles.includes(user.role);
+                });
+            }
+            return true;
+        }
+        return false;
+    });
+}

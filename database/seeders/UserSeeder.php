@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = [
+        $admins = [
             [
                 'name' => 'Özgür',
                 'surname' => 'Özarpacı',
@@ -66,10 +66,29 @@ class UserSeeder extends Seeder
             ],
         ];
 
+        $users = [
+            [
+                'name' => 'John',
+                'surname' => 'Doe',
+                'email' => 'john.doe@clinic.com',
+            ],
+            [
+                'name' => 'Jane',
+                'surname' => 'Doe',
+                'email' => 'jane.doe@clinic.com',
+            ],
+        ];
+
+        foreach ($admins as $admin) {
+            $userModel = User::factory()->create($admin);
+
+            $userModel->assignRole('admin');
+        }
+
         foreach ($users as $user) {
             $userModel = User::factory()->create($user);
 
-            $userModel->assignRole('admin');
+            $userModel->assignRole('user');
         }
     }
 }
