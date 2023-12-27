@@ -60,8 +60,8 @@ export const menuItems = [
         getItem("Oluştur", "/admin/users/create"),
     ], null, ['admin']),
     getItem("Toplantı Oluştur", "/admin/meeting", <CommentOutlined />),
-    getItem("Ödeme Durumu", "/admin/my-advances", <PayCircleOutlined />,[], null, ['admin']),
-    getItem("İzin Durumu", "/admin/my-leaves", <CalendarOutlined />,[], null, ['admin']),
+    getItem("Ödeme Durumu", "/admin/my-advances", <PayCircleOutlined />,null, null, ['admin']),
+    getItem("İzin Durumu", "/admin/my-leaves", <CalendarOutlined />,null, null, ['admin']),
 ];
 
 export const getMenuItems = (user) => {
