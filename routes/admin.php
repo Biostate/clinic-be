@@ -15,7 +15,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         ->name('admin.requests.advance.create');
 
     Route::get('/meeting', [\App\Http\Controllers\Admin\MeetingController::class, 'meeting'])
-        ->name('admin.meeting');
+        ->name('admin.meetings.index');
+    Route::post('/meeting', [\App\Http\Controllers\Admin\MeetingController::class, 'store'])
+        ->name('admin.meetings.store');
 
     Route::get('/todo', [\App\Http\Controllers\Admin\TodoController::class, 'index'])
         ->name('admin.todo');

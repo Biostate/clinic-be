@@ -3,6 +3,7 @@ import {Avatar, Breadcrumb, Button, Modal} from "antd";
 import {PlusCircleTwoTone} from "@ant-design/icons";
 import {useState} from "react";
 import { Space, Table, Tag } from 'antd';
+import {useForm} from "@inertiajs/react";
 const columns = [
     {
         title: 'Kullanıcı',
@@ -10,25 +11,25 @@ const columns = [
         key: 'user',
         render: (_, record) =>
             <div className="flex">
-                <Avatar src={<img src={record.avatar} alt={ record.name } />} />
+                <Avatar src={<img src={record.user.avatar} alt={ record.user.name } />} />
                 <div>
-                    { record.name } <br/>
-                    { record.email }
+                    { record.user.name } { record.user.surname }<br/>
+                    { record.user.email }
                 </div>
             </div>,
     },{
         title: 'Zoom ID',
-        dataIndex: 'zoomId',
-        key: 'zoomId',
-        render: (text) => <a>{text}</a>,
+        dataIndex: 'zoom_id',
+        key: 'zoom_id',
+        render: (text) => text,
     },{
         title: 'Zoom Password',
-        dataIndex: 'zoomPassword',
-        key: 'zoomPassword',
-        render: (text) => <a>{text}</a>,
+        dataIndex: 'zoom_password',
+        key: 'zoom_password',
+        render: (text) => text,
     },
     {
-        title: 'Action',
+        title: 'Aksiyon',
         key: 'action',
         render: (_, record) => (
             <Space size="middle">
@@ -39,42 +40,23 @@ const columns = [
         ),
     },
 ];
-const data = [
-    {
-        key: '1',
-        name: 'John Brown',
-        email: 'john.brown@gmail.com',
-        avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-        zoomId: '123456789',
-        zoomPassword: '123456789',
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        email: 'john.brown@gmail.com',
-        avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-        zoomId: '123456789',
-        zoomPassword: '123456789',
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        email: 'john.brown@gmail.com',
-        avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-        zoomId: '123456789',
-        zoomPassword: '123456789',
-    },
-];
 
-const Meeting = ({ auth }) => {
+const Meeting = ({ meetings }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const { data, setData, post, processing, errors, reset } = useForm();
 
     const showModal = () => {
         setIsModalOpen(true);
     };
 
     const handleOk = () => {
-        setIsModalOpen(false);
+        post(route('admin.meetings.store'), {
+            onSuccess: () => {
+                setIsModalOpen(false);
+                reset();
+            },
+        });
     };
 
     const handleCancel = () => {
@@ -97,7 +79,7 @@ const Meeting = ({ auth }) => {
               <p>Oluşturmak istediğinize emin misiniz?</p>
           </Modal>
 
-          <Table columns={columns} dataSource={data} />
+          <Table columns={columns} dataSource={meetings} />
       </div>
     );
 }
