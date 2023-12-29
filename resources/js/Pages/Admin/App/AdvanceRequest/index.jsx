@@ -18,17 +18,7 @@ const AdvanceRequest = ({ auth }) => {
       <div className="font-['DM Sans']" >
           <div className="flex flex-col justify-center gap-5">
           <div class=" h-6 text-center text-black text-[22px] font-normal font-['DM Sans'] leading-7">Avans Talebi</div>
-              <div className="flex gap-9 justify-center" >
-                  <div>
-                    <Input placeholder="İsim" className="rounded-md" ></Input>
-                  </div>
-                  <div>
-                    <Input placeholder="Soyisim" className="rounded-md"  ></Input>
-                  </div>
-              </div>
-              <div className=" flex justify-center" >
-                <Input placeholder="Mail Adresi" className="max-w-md rounded-md " ></Input>
-              </div>
+              
               <div className=" flex justify-center" >
                 <div className="bg-teal-50 px-12 py-3 border-2 rounded-md"  >
                   <p className="text-center" >

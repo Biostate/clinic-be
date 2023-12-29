@@ -9,13 +9,13 @@ const LeaveRequest = ({ auth }) => {
       <>
       {/* İzin Türü Seçimi */}
       <div className="mt-6  " >
-        <div className="flex gap-6 justify-center grid-cols-4  " >
+        <div className="flex gap-6 justify-center grid-cols-4  text-base font-bold font-['Noto Sans'] leading-normal " >
           <div className=" flex flex-col gap-6  " >
             <div className="flex justify-center" >
                 <input type="checkbox" className=" rounded-xl"    />
             </div>
             <div className=" px-11  py-5 bg-teal-50 rounded-[20px] border border-stone-300  ">
-              <div className=" text-center pt-2  text-emerald-400 text-base font-bold font-['Noto Sans'] leading-normal">Yıllık İzin</div>
+              <div className=" text-center pt-2  text-emerald-400">Yıllık İzin</div>
             </div>
           </div>
           <div className=" flex flex-col gap-6  " >
@@ -23,7 +23,7 @@ const LeaveRequest = ({ auth }) => {
                 <input type="checkbox"  className=" rounded-xl" />
             </div> 
             <div className=" px-11  py-5 bg-blue-100 rounded-[20px] border border-stone-300  ">
-              <div className="text-center pt-2 text-blue-400 text-base  font-bold font-['Noto Sans'] leading-normal">Ücretsiz İzin</div>
+              <div className="text-center pt-2 text-blue-400 ">Ücretsiz İzin</div>
             </div>
           </div>
           <div className=" flex flex-col gap-6  " >
@@ -31,7 +31,7 @@ const LeaveRequest = ({ auth }) => {
                 <input type="checkbox" className=" rounded-xl" />
             </div>
             <div className=" px-11  py-5 bg-yellow-50 rounded-[20px] border border-stone-300  ">
-              <div className="text-center pt-2 text-amber-400 text-base font-bold font-['Noto Sans'] leading-normal">Mazaretli İzin</div>
+              <div className="text-center pt-2 text-amber-400">Mazaretli İzin</div>
             </div>
           </div>
           <div className=" flex flex-col gap-6  " >
@@ -39,7 +39,7 @@ const LeaveRequest = ({ auth }) => {
                 <input type="checkbox"className=" rounded-xl" />
             </div>
             <div className=" px-11  py-5 bg-red-50 rounded-[20px] border border-stone-300  ">
-              <div className="text-center pt-2 text-red-400 text-base font-bold font-['Noto Sans'] leading-normal">Hasta İzni</div>
+              <div className="text-center pt-2 text-red-400 ">Hasta İzni</div>
             </div>
           </div>
         </div>
@@ -49,19 +49,7 @@ const LeaveRequest = ({ auth }) => {
           <h1 className="  h-6 text-center text-black text-[22px] font-normal font-['DM Sans'] leading-7" >
             İzin Formu
           </h1>
-          <div className=" flex flex-col mt-5" >
-            <div className="flex gap-8 justify-center" >
-              <div>
-                <Input className="rounded-md p-3 " placeholder="İsim" ></Input>
-              </div>
-              <div>
-                <Input className="rounded-md p-3 "  placeholder="Soyisim"></Input>
-              </div>
-            </div>            
-            <div className="flex justify-center " >
-              <Input className="rounded-md p-3 mt-5 max-w-md " placeholder="Mail Adresi" ></Input>
-            </div>
-          </div>
+          
         </div>
 
         {/* İzin tarih seçimi */}
