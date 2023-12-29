@@ -1,7 +1,8 @@
 import AuthenticatedLayout from "@/Pages/Admin/Layout/AuthenticatedLayout.jsx";
-import { Input } from 'antd';
-import { Select, Space } from 'antd';
-import Button from "@/Components/Button";
+import { ExclamationCircleFilled } from '@ant-design/icons';
+import { Button, Modal, Space,Input,Select } from 'antd';
+const { confirm } = Modal;
+
 
 
 
@@ -13,11 +14,25 @@ const AdvanceRequest = ({ auth }) => {
   
   const App = () => <Input placeholder="Basic usage" />;
 
+  const showPromiseConfirm = () => {
+    confirm({
+      title: 'Do you confirm the information you have entered ?',
+      icon: <ExclamationCircleFilled />,
+      content: ' ',
+      onOk() {
+        return new Promise((resolve, reject) => {
+          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+        }).catch(() => console.log('Oops errors!'));
+      },
+      onCancel() {},
+    });
+  };
+
   
     return (
       <div className="font-['DM Sans']" >
           <div className="flex flex-col justify-center gap-5">
-          <div class=" h-6 text-center text-black text-[22px] font-normal font-['DM Sans'] leading-7">Avans Talebi</div>
+          <div class=" h-6 text-center text-black text-[22px] font-normal  leading-7">Avans Talebi</div>
               
               <div className=" flex justify-center" >
                 <div className="bg-teal-50 px-12 py-3 border-2 rounded-md"  >
@@ -27,7 +42,7 @@ const AdvanceRequest = ({ auth }) => {
                 </div>
               </div>
               <div className="flex justify-center" >
-                <Input placeholder="Miktar" className="rounded-md max-w-xs "  ></Input>
+                <Input placeholder="Miktar" className="rounded-md max-w-xs "></Input>
               </div>
               <div className=" flex justify-center" >
                 <div className="bg-teal-50 px-12 py-3 border-2 rounded-md"  >
@@ -68,10 +83,9 @@ const AdvanceRequest = ({ auth }) => {
               </div>
               
               <div className="flex justify-center" >
-                <div className="SignUp w-[280px] h-[49px] p-4 bg-blue-600 rounded-[20px] justify-center items-center gap-1 inline-flex">
-                  <div className="Text px-1.5 justify-start items-start gap-2.5 flex">
-                      <div className="Button text-white text-lg font-normal font-['DM Sans'] leading-normal tracking-wide"> Talep Gönder </div>
-                  </div>
+                <div className=" px-14 py-3.5 bg-blue-600 rounded-[20px] justify-center items-center">
+                  
+                  <button className=" text-white text-lg px-1.5  tracking-wide" onClick={showPromiseConfirm} > Talep Gönder </button>
                 </div>
               </div>
   
