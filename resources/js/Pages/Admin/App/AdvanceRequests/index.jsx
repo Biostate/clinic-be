@@ -33,9 +33,9 @@ const AdvanceRequests = ({ auth }) => {
       title: 'Avans Talepleri',
       key: 'avans',
       render: (_, record) => (
-        <Space size="middle">
+        <Space size="middle"  >
           <Button type="dashed" className="rounded-full bg-sky-500/25" onClick={showModal}>
-            <p className="text-blue-400 font-bold">Görüntüle</p>
+              <p className="text-blue-400  font-bold">Görüntüle</p>
           </Button>
         </Space>
       ),
