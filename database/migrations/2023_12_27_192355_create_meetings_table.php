@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('meetings', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Models\User::class)
+                ->constrained()
+                ->cascadeOnDelete();
             $table->string('name');
-            $table->string('surname');
-            $table->string('address')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('zoom_id');
+            $table->string('zoom_password');
+            $table->dateTime('starts_at');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('meetings');
     }
 };

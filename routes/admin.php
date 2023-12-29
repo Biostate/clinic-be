@@ -15,7 +15,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         ->name('admin.requests.advance.create');
 
     Route::get('/meeting', [\App\Http\Controllers\Admin\MeetingController::class, 'meeting'])
-        ->name('admin.meeting');
+        ->name('admin.meetings.index');
+    Route::post('/meeting', [\App\Http\Controllers\Admin\MeetingController::class, 'store'])
+        ->name('admin.meetings.store');
 
     Route::get('/todo', [\App\Http\Controllers\Admin\TodoController::class, 'index'])
         ->name('admin.todo');
@@ -24,6 +26,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         ->name('admin.users.index');
     Route::get('/users/create', [\App\Http\Controllers\Admin\UserController::class, 'create'])
         ->name('admin.users.create');
+    Route::post('/users', [\App\Http\Controllers\Admin\UserController::class, 'store'])
+        ->name('admin.users.store');
+    Route::get('/users/{user}/edit', [\App\Http\Controllers\Admin\UserController::class, 'edit'])
+        ->name('admin.users.edit');
+    Route::post('/users/{user}', [\App\Http\Controllers\Admin\UserController::class, 'update'])
+        ->name('admin.users.update');
 
     Route::get('/requests/leave', [\App\Http\Controllers\Admin\RequestController::class, 'leaveRequests'])
         ->name('admin.requests.leave.index');
@@ -39,10 +47,15 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         })
             ->name('admin.active');
     });
+
+    Route::get('/my-advances', [\App\Http\Controllers\Admin\EmployeeController::class, 'myAdvances'])
+        ->name('admin.myAdvances');
+    Route::get('/my-leaves', [\App\Http\Controllers\Admin\EmployeeController::class, 'myLeaves'])
+        ->name('admin.myLeaves');
 });
 
 
 Route::prefix('admin')->middleware('guest')->group(function () {
     Route::get('/login', [\App\Http\Controllers\Admin\AuthController::class, 'login'])
-        ->name('admin.profile');
+        ->name('admin.login');
 });

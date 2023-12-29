@@ -23,6 +23,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'surname',
+        'address',
+        'phone',
     ];
 
     /**
@@ -44,4 +47,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getAvatarAttribute()
+    {
+        // Todo: Add default avatar
+        return 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($this->email)));
+    }
+
+    public function getRoleAttribute()
+    {
+        return $this->roles->first()->name;
+    }
 }
