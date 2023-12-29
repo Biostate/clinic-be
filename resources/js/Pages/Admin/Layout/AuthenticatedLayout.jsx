@@ -9,11 +9,24 @@ import {
     Avatar,
     Drawer,
 } from "antd";
-import { DownOutlined, MailOutlined, BellOutlined,MessageOutlined} from "@ant-design/icons"
+import {
+    DownOutlined,
+    MailOutlined,
+    BellOutlined,
+    MessageOutlined,
+    UserOutlined,
+} from "@ant-design/icons";
 
-import {pollingUserActive, requestUserActive} from "@/utils/pollingUserActive.js";
-import {determineOpenKeys, getMenuItems, onMenuItemClick} from "@/utils/adminMenu.jsx";
-import {router, usePage} from "@inertiajs/react";
+import {
+    pollingUserActive,
+    requestUserActive,
+} from "@/utils/pollingUserActive.js";
+import {
+    determineOpenKeys,
+    getMenuItems,
+    onMenuItemClick,
+} from "@/utils/adminMenu.jsx";
+import { router, usePage } from "@inertiajs/react";
 
 const { Header, Content, Sider } = Layout;
 
@@ -37,8 +50,8 @@ const url =
 
 export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
     const [theme, setTheme] = useState("dark");
-    const { ziggy } = usePage().props
-    const { auth } = usePage().props
+    const { ziggy } = usePage().props;
+    const { auth } = usePage().props;
     const [current, setCurrent] = useState(ziggy.currentPath);
     const [openKeys, setOpenKeys] = useState(determineOpenKeys(current));
     const menuItems = getMenuItems(auth.user);
@@ -60,15 +73,15 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
     const menuItemChanged = (current, openKeys) => {
         setOpenKeys(openKeys);
         setCurrent(current);
-        router.get(current)
-    }
+        router.get(current);
+    };
 
     const dropdownClicked = ({ key }) => {
-        if (key === 'logout') {
-            if (confirm('Çıkış yapmak istediğinize emin misiniz?'))
-                router.post('/logout')
+        if (key === "logout") {
+            if (confirm("Çıkış yapmak istediğinize emin misiniz?"))
+                router.post("/logout");
         }
-    }
+    };
 
     return (
         <Layout
@@ -93,13 +106,16 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
                         <Space size={15}>
                             <Button type="primary" icon={<MailOutlined />} />
                             <Button type="primary" icon={<BellOutlined />} />
-                            <Button type="primary" icon={<MessageOutlined />}onClick={showDrawer}>
-                            </Button>
+                            <Button
+                                type="primary"
+                                icon={<MessageOutlined />}
+                                onClick={showDrawer}
+                            ></Button>
 
                             <Dropdown
                                 menu={{
                                     items,
-                                    onClick: dropdownClicked
+                                    onClick: dropdownClicked,
                                 }}
                             >
                                 <Space>
@@ -114,7 +130,43 @@ export default function AuthenticatedLayout({ children, breadcrumbs = [] }) {
                             onClose={onClose}
                             open={open}
                         >
-                            <p>Hello...</p>
+                            <div className="flex flex-col">
+                                <div className=" flex gap-2 max-w-xs p-4 rounded-md mb-2">
+                                    {" "}
+                                    
+                                    <Space>
+                                        <div>
+                                            <Avatar
+                                                size="small"
+                                                icon={<UserOutlined />}
+                                            />
+                                        </div>
+                                    </Space>
+                                    <div className="bg-blue-500 text-white p-2 rounded-md mb-1">
+                                        {" "}
+                                        
+                                        Merhabalar Muhammed Bey.
+                                    </div>
+                                </div>
+
+                                <div className="flex justify-end">
+                                    <div className=" flex gap-2 max-w-xs p-4 rounded-md mb-2">
+                                        {" "}
+                                       
+                                        <div className="bg-blue-500 p-3 text-white rounded-md">
+                                            Merhabalar Ayşe Hanım.
+                                        </div>
+                                        
+                                        <Space>
+                                        <div><Avatar
+                                                size="small"
+                                                icon={<UserOutlined />}
+                                            /></div>
+                                            
+                                        </Space>
+                                    </div>
+                                </div>
+                            </div>
                         </Drawer>
                     </div>
                 </div>
