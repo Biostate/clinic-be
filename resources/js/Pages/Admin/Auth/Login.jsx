@@ -34,7 +34,7 @@ export default function Login({ status }){
                 <div> 
                     <img src="/assets/images/login_left_side.png" className='rounded-xl' />
                 </div>
-                <div className='flex flex-col justify-between rounded-md gap-5'>
+                <div className='flex flex-col justify-between rounded-md gap-5  '>
                     <div>   
                         <img src="/assets/images/Logo-International-clinics-01 1.svg" alt="group" />
                     </div>
@@ -50,7 +50,7 @@ export default function Login({ status }){
                         </div>
                         <div className=' justify-center' >
                             <label htmlFor="password">Şifre</label><br />
-                            <Input  className='p-2 mt-2  rounded-md '  placeholder='Parola' name='password' ></Input>
+                            <Input.Password className='p-2 mt-2  rounded-md '  placeholder='Parola' name='password' ></Input.Password>
                         </div>
                     </div>
                     <div className='flex justify-between px-3'>
