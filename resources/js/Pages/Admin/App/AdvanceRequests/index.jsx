@@ -28,17 +28,6 @@ const AdvanceRequests = ({ auth }) => {
             {record.name}
           </div>
         </div>,
-    }, {
-      title: 'İzin Talepleri',
-      dataIndex: 'izin',
-      key: 'izin',
-      render: (text) => (
-        <Space size="middle">
-          <Button type="dashed" className="rounded-full bg-sky-500/25">
-            <p className="text-blue-400 font-bold">Görüntüle</p>
-          </Button>
-        </Space>
-      ),
     },
     {
       title: 'Avans Talepleri',
