@@ -30,7 +30,8 @@ const AdvanceRequests = ({ auth }) => {
             {record.name}
           </div>
         </div>,
-    }, {
+    }, 
+    {
       title: 'İzin Talepleri',
       dataIndex: 'izin',
       key: 'izin',
@@ -42,17 +43,7 @@ const AdvanceRequests = ({ auth }) => {
         </Space>
       ),
     },
-    {
-      title: 'Avans Talepleri',
-      key: 'avans',
-      render: (_, record) => (
-        <Space size="middle">
-          <Button type="dashed" className="rounded-full bg-sky-500/25">
-            <p className="text-blue-400 font-bold">Görüntüle</p>
-          </Button>
-        </Space>
-      ),
-    },
+    
   ];
 
   const data = [

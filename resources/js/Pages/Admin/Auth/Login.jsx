@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import { UserOutlined } from '@ant-design/icons';
-import { Input } from 'antd';
-import { Checkbox } from 'antd';
+import { Input,Checkbox } from 'antd';
 import {useForm} from "@inertiajs/react";
 import InputError from "@/Components/InputError.jsx";
 
@@ -30,65 +29,44 @@ export default function Login({ status }){
     };
 
     return (
-        <div className="flex flex-row">
-            <div className="flex max-h-screen"> {/* Fotograf */}
-                <img src="/assets/images/login_left_img.png" alt="login_img" />
-            </div>
-            <div className="flex justify-center"> {/* Ana bolum */}
-                <div className="flex flex-col max-h-screen w-6/12 overflow-y-scroll justify-center"> {/* Ana bolum 2*/}
-                    <div className="flex">
-                        <div className="flex"> {/* Logo + yazi */}
-                            <img src="/assets/images/Logo-International-clinics-01 1.svg" alt="group" />
+        <div className=' flex justify-center items-center h-screen  ' >
+            <div className='flex gap-6 bg-sky-50 p-5 rounded-2xl ' >
+                <div> 
+                    <img src="/assets/images/login_left_side.png" className='rounded-xl' />
+                </div>
+                <div className='flex flex-col justify-between rounded-md gap-5  '>
+                    <div>   
+                        <img src="/assets/images/Logo-International-clinics-01 1.svg" alt="group" />
+                    </div>
+                    <div className='text-center'>
+                        <h1 className="text-zinc-800 text-[40px] font-semibold leading-[60px] tracking-tight" >
+                            GİRİŞ
+                        </h1>
+                    </div>
+                    <div className='flex flex-col gap-7' >
+                        <div className=' justify-center' >
+                            <label htmlFor="email">Email</label><br />  
+                            <Input  className='p-2 mt-2 rounded-md  ' placeholder='Kayıtlı Email Adresini Giriniz' name='email' ></Input>
+                        </div>
+                        <div className=' justify-center' >
+                            <label htmlFor="password">Şifre</label><br />
+                            <Input.Password className='p-2 mt-2  rounded-md '  placeholder='Parola' name='password' ></Input.Password>
                         </div>
                     </div>
-
-                    {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
-                    <form onSubmit={submit}>
-                        <div className="flex flex-col">
-                            <p className="text-2xl font-bold text-center">GİRİŞ</p>
-                            <br />
-                            <label>E-mail</label>
-                            <Input
-                                size="large"
-                                placeholder="örn: admin@clinic.com"
-                                prefix={<UserOutlined />}
-                                onChange={(e) => setData('email', e.target.value)}
-                                required
-                                type="email"
-                                name="email"
-                            />
-                            <InputError message={errors.email} className="mt-2" />
-                            <br />
-                            <label>Parola</label>
-                            <Input
-                                size="large"
-                                placeholder="Parola"
-                                prefix={<UserOutlined />}
-                                type="password"
-                                onChange={(e) => setData('password', e.target.value)}
-                                required
-                            />
-                            <InputError message={errors.password} className="mt-2" />
-                            <br />
-                            <div>
-                                <div className="flex justify-between">
-                                    <div> {/* Beni hatirla */}
-                                        <Checkbox onChange={onChange}>Beni Hatırla</Checkbox>
-                                    </div>
-                                    <div> {/* Parolami unuttum */}
-                                        <p>Parolamı Unuttum(WIP)</p>
-                                    </div>
-                                </div>
-                                <button disabled={processing} className="mt-5 w-full h-14 px-4 bg-green-600 rounded-[20px] justify-center items-center gap-2.5 inline-flex">
-                                    <div className="grow shrink basis-0 text-center text-white text-base font-medium leading-normal tracking-tight">
-                                        GİRİŞ YAP
-                                    </div>
-                                </button>
-                            </div>
+                    <div className='flex justify-between px-3'>
+                        <div>
+                            <Checkbox onChange={onChange}>Beni Hatırla</Checkbox>
                         </div>
-                    </form>
+                        <div>
+                            <a href="">Parolamı Unuttum</a>
+                        </div>
+                    </div>
+                    <div className='flex justify-center'>
+                        <button className='bg-green-600 text-white rounded-xl p-2 w-1/2' >GİRİŞ YAP</button>
+                    </div>
                 </div>
             </div>
         </div>
+
     );
 }
