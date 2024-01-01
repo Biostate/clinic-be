@@ -20,6 +20,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "antd": "^5.12.5"
+        "antd": "^5.12.5",
+        "crypto-js": "^4.2.0"
     }
 }

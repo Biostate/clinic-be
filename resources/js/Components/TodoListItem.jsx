@@ -8,19 +8,18 @@ function TodoListItem(props) {
     const dateBackgroundColorProp = props.dateBackgroundColor;
     const dateTextColorProp = props.dateTextColor;
     const squareColor = squareColorProp === 'green' ? 'bg-green-600' : squareColorProp === 'violet' ? 'bg-violet-500 ' :squareColorProp ==='yellow' ? 'bg-yellow-400': 'bg-blue-100';
-    const dateBackgroundColor = dateBackgroundColorProp === 'green' ? 'bg-emerald-50' : dateBackgroundColorProp === 'violet' ? 'bg-violet-50' :dateBackgroundColorProp ==='yellow' ? 'bg-amber-50': dateBackgroundColorProp ==='pink' ? 'bg-pink-100':'bg-pink-100'; 
-    const dateTextColor = dateTextColorProp === 'green' ? 'text-emerald-600' : dateTextColorProp === 'violet' ? 'text-violet-500' :dateTextColorProp ==='yellow' ? 'text-amber-400': dateTextColorProp ==='pink' ? 'text-pink-600':'bg-blue-100'; 
+    const dateBackgroundColor = dateBackgroundColorProp === 'green' ? 'bg-emerald-50' : dateBackgroundColorProp === 'violet' ? 'bg-violet-50' :dateBackgroundColorProp ==='yellow' ? 'bg-amber-50': dateBackgroundColorProp ==='pink' ? 'bg-pink-100':'bg-pink-100';
+    const dateTextColor = dateTextColorProp === 'green' ? 'text-emerald-600' : dateTextColorProp === 'violet' ? 'text-violet-500' :dateTextColorProp ==='yellow' ? 'text-amber-400': dateTextColorProp ==='pink' ? 'text-pink-600':'bg-blue-100';
   return (
     <div>
-       
+
         <div className="flex flex-col gap-3 mt-4 ">
             {/* Satır */}
             <div className=" flex justify-around bg-neutral-50 p-3 rounded-[10px]">
                 <div className="flex gap-3 mt-2 ">
                     <div className={` mt-[1px] w-3 h-3  ${squareColor} rounded-[3px]`}></div>
                     <p className="text-zinc-800 text-xs font-semibold   leading-[18px] tracking-tight  ">
-                        Sonbahar Ortası Festivali etkinlik
-                        planlaması
+                        {props.title}
                     </p>
                 </div>
                 <div className="mt-2">
@@ -41,8 +40,8 @@ function TodoListItem(props) {
                         />
                     </Space>
                 </div>
-            </div> 
-        </div>                   
+            </div>
+        </div>
     </div>
   )
 }

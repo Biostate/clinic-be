@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AuthenticatedLayout from "@/Pages/Admin/Layout/AuthenticatedLayout.jsx";
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Button, Table, Avatar, Space, Modal, DatePicker } from 'antd';
+import getGravatarURL from "@/utils/gravatar.js";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -30,9 +31,9 @@ const AdvanceRequests = ({ auth }) => {
             {record.name}
           </div>
         </div>,
-    }, 
+    },
     {
-      title: 'İzin Talepleri',
+      title: '',
       dataIndex: 'izin',
       key: 'izin',
       render: (text) => (
@@ -43,26 +44,26 @@ const AdvanceRequests = ({ auth }) => {
         </Space>
       ),
     },
-    
+
   ];
 
-  const data = [
-    {
-      key: '1',
-      name: 'Wade Warren',
-      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    },
-    {
-      key: '2',
-      name: 'Robert Fox',
-      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    },
-    {
-      key: '3',
-      name: 'Marven McKinney',
-      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    },
-  ];
+    const data = [
+        {
+            key: '1',
+            name: 'Hacer Kılıç',
+            avatar: getGravatarURL('khacer001@gmail.com'),
+        },
+        {
+            key: '2',
+            name: 'Ali Asım Bulut',
+            avatar: getGravatarURL('aliasim1625@gmail.com'),
+        },
+        {
+            key: '3',
+            name: 'Osman Gürlek',
+            avatar: getGravatarURL('osmangurlek10@gmail.com'),
+        },
+    ];
 
   return (
     <div>
@@ -85,7 +86,7 @@ const AdvanceRequests = ({ auth }) => {
             Açıklama
           </div>
           <div>
-            <TextArea rows={4} />
+            <TextArea rows={4}/>
           </div>
           <div className='flex justify-center gap-10 mt-5 p-3'>
             <Space size="middle">
