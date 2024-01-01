@@ -31,11 +31,11 @@ export default function Login({ status }){
     return (
         <div className=' flex justify-center items-center h-screen  ' >
             <div className='flex gap-6 bg-sky-50 p-5 rounded-2xl ' >
-                <div> 
+                <div>
                     <img src="/assets/images/login_left_side.png" className='rounded-xl' />
                 </div>
                 <div className='flex flex-col justify-between rounded-md gap-5  '>
-                    <div>   
+                    <div>
                         <img src="/assets/images/Logo-International-clinics-01 1.svg" alt="group" />
                     </div>
                     <div className='text-center'>
@@ -43,27 +43,39 @@ export default function Login({ status }){
                             GİRİŞ
                         </h1>
                     </div>
-                    <div className='flex flex-col gap-7' >
-                        <div className=' justify-center' >
-                            <label htmlFor="email">Email</label><br />  
-                            <Input  className='p-2 mt-2 rounded-md  ' placeholder='Kayıtlı Email Adresini Giriniz' name='email' ></Input>
+                    <form onSubmit={submit}>
+                        <div className='flex flex-col gap-7' >
+                            <div className=' justify-center' >
+                                <label htmlFor="email">Email</label><br />
+                                <Input
+                                    onChange={(e) => setData('email', e.target.value)}
+                                    className='p-2 mt-2 rounded-md  '
+                                    placeholder='Kayıtlı Email Adresini Giriniz'
+                                    name='email'
+                                ></Input>
+                            </div>
+                            <div className=' justify-center' >
+                                <label htmlFor="password">Şifre</label><br />
+                                <Input.Password
+                                    onChange={(e) => setData('password', e.target.value)}
+                                    className='p-2 mt-2  rounded-md '
+                                    placeholder='Parola'
+                                    name='password'
+                                ></Input.Password>
+                            </div>
                         </div>
-                        <div className=' justify-center' >
-                            <label htmlFor="password">Şifre</label><br />
-                            <Input.Password className='p-2 mt-2  rounded-md '  placeholder='Parola' name='password' ></Input.Password>
+                        <div className='flex justify-between px-3'>
+                            <div>
+                                <Checkbox onChange={onChange}>Beni Hatırla</Checkbox>
+                            </div>
+                            <div>
+                                <a href="">Parolamı Unuttum</a>
+                            </div>
                         </div>
-                    </div>
-                    <div className='flex justify-between px-3'>
-                        <div>
-                            <Checkbox onChange={onChange}>Beni Hatırla</Checkbox>
+                        <div className='flex justify-center'>
+                            <button className='bg-green-600 text-white rounded-xl p-2 w-1/2' >GİRİŞ YAP</button>
                         </div>
-                        <div>
-                            <a href="">Parolamı Unuttum</a>
-                        </div>
-                    </div>
-                    <div className='flex justify-center'>
-                        <button className='bg-green-600 text-white rounded-xl p-2 w-1/2' >GİRİŞ YAP</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
