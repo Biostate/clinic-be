@@ -23,7 +23,7 @@ class ProjectInstallCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
         $this->info('Installing project...');
 
@@ -32,5 +32,7 @@ class ProjectInstallCommand extends Command
 
         $this->info('Seeding database...');
         $this->callSilent('db:seed', ['--force' => true]);
+
+        return 0;
     }
 }

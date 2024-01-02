@@ -48,14 +48,14 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function getAvatarAttribute()
+    public function getAvatarAttribute(): string
     {
         // Todo: Add default avatar
         return 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($this->email)));
     }
 
-    public function getRoleAttribute()
+    public function getRoleAttribute(): string|null
     {
-        return $this->roles->first()->name;
+        return $this->roles->first()?->name;
     }
 }
