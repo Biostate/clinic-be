@@ -1,6 +1,6 @@
 # Clinic Project
 
-[PROJECT DESCRIPTION]
+This project is made for a group project in the course of Software Development at the Erciyes University.
 
 ## Installation
 

@@ -3,59 +3,127 @@ import { Badge, Calendar } from 'antd';
 const getListData = (value) => {
     let listData;
     switch (value.date()) {
+        case 1:
+            listData = [
+                {
+                    type: 'success',
+                    content: 'Haftabaşı toplantısı.',
+                },
+            ];
+            break;
+        case 4:
+            listData = [
+                {
+                    type: 'success',
+                    content: 'Piknik etkinliği.',
+                },
+            ];
+            break;
+        case 5:
+            listData = [
+                {
+                    type: 'success',
+                    content: 'Retro.',
+                },
+            ];
+            break;
         case 8:
             listData = [
                 {
-                    type: 'warning',
-                    content: 'This is warning event.',
+                    type: 'success',
+                    content: 'Haftabaşı toplantısı.',
                 },
                 {
                     type: 'success',
-                    content: 'This is usual event.',
+                    content: 'Müşteri toplantısı.',
+                },
+            ];
+            break;
+        case 9:
+            listData = [
+                {
+                    type: 'success',
+                    content: 'Online Eğitim Semineri.',
                 },
             ];
             break;
         case 10:
             listData = [
                 {
-                    type: 'warning',
-                    content: 'This is warning event.',
+                    type: 'success',
+                    content: 'Ayarlanmış Zoom Toplantısı.',
                 },
+            ];
+            break;
+        case 12:
+            listData = [
                 {
                     type: 'success',
-                    content: 'This is usual event.',
-                },
-                {
-                    type: 'error',
-                    content: 'This is error event.',
+                    content: 'Retro.',
                 },
             ];
             break;
         case 15:
             listData = [
                 {
-                    type: 'warning',
-                    content: 'This is warning event',
+                    type: 'success',
+                    content: 'Haftabaşı toplantısı.',
                 },
+            ];
+            break;
+        case 16:
+            listData = [
                 {
                     type: 'success',
-                    content: 'This is very long usual event......',
+                    content: 'Ayarlanmış Zoom Toplantısı.',
                 },
+            ];
+            break;
+        case 18:
+            listData = [
                 {
-                    type: 'error',
-                    content: 'This is error event 1.',
+                    type: 'success',
+                    content: 'Ayarlanmış Zoom Toplantısı.',
                 },
+            ];
+            break;
+        case 19:
+            listData = [
                 {
-                    type: 'error',
-                    content: 'This is error event 2.',
+                    type: 'success',
+                    content: 'Retro.',
                 },
+            ];
+            break;
+        case 22:
+            listData = [
                 {
-                    type: 'error',
-                    content: 'This is error event 3.',
+                    type: 'success',
+                    content: 'Haftabaşı toplantısı.',
                 },
+            ];
+            break;
+        case 26:
+            listData = [
                 {
-                    type: 'error',
-                    content: 'This is error event 4.',
+                    type: 'success',
+                    content: 'Retro.',
+                },
+            ];
+            break;
+        case 29:
+            listData = [
+                {
+                    type: 'success',
+                    content: 'Haftabaşı toplantısı.',
+                },
+            ];
+            break;
+        case 31:
+            listData = [
+                {
+                    type: 'success',
+                    content: 'Aylık değerlendirme.',
                 },
             ];
             break;

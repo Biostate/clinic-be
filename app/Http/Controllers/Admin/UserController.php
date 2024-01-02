@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(): Response
     {
         // TODO: Add pagination
         return Inertia::render('Admin/App/Users/index', [
@@ -17,19 +18,19 @@ class UserController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Admin/App/Users/form');
     }
 
-    public function edit(Request $request, User $user)
+    public function edit(Request $request, User $user): Response
     {
         return Inertia::render('Admin/App/Users/form', [
             'user' => $user->append(['avatar', 'role']),
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         $validated = $request->validate([
             'name' => ['required', 'max:255'],
@@ -45,12 +46,12 @@ class UserController extends Controller
         $data['password'] = bcrypt($validated['password']);
 
         $user = User::create($data);
-        $user->assignRole($validated['role']);
+        $user->assignRole((string) $validated['role']);
 
         return redirect()->route('admin.users.index')->with('success', 'User created.');
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $user): \Illuminate\Http\RedirectResponse
     {
         // Todo add password validation
         // Todo: add role
@@ -72,13 +73,13 @@ class UserController extends Controller
         $user->update($validated);
 
         if ($request->has('role')) {
-            $user->syncRoles($request->role);
+            $user->syncRoles((string) $request->role);
         }
 
         return redirect()->route('admin.users.index')->with('success', 'User updated.');
     }
 
-    public function destroy(User $user)
+    public function destroy(User $user): \Illuminate\Http\RedirectResponse
     {
         $user->delete();
 

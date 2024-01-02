@@ -24,7 +24,7 @@ const Todo = ({ auth }) => {
     const handleCancel = () => {
         setIsModalOpen(false);
     };
-    
+
     return (
         <>
             <div className="flex flex-col gap-5 p-6 font-sans  ">
@@ -47,7 +47,7 @@ const Todo = ({ auth }) => {
                                     </div>
                                 </div>
                             </button>
-                            
+
                             <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                                 <h2 className="text-center text-neutral-800 text-3xl font-medium leading-9 tracking-tight">Task</h2>
                                 <div className="flex flex-col my-2 " >
@@ -70,12 +70,12 @@ const Todo = ({ auth }) => {
                                         <label className="font-semibold" htmlFor="date">Task Son Tarihi:</label>
                                         <Input name="date" placeholder=". ./. ./. . . . "  className=" mt-2 rounded-md  " />
                                     </div>
-                                    
+
                                 </div>
                             </Modal>
-                                
+
                         </div>
-                        
+
                     </div>
                     <div>
                         <Search
@@ -95,10 +95,10 @@ const Todo = ({ auth }) => {
                             Waiting
                         </h2>
                     </div>
-                    <TodoListItem squareColor="green" dateBackgroundColor="pink" dateTextColor="pink"   date="Son Gün" />
-                    <TodoListItem squareColor="green" dateBackgroundColor="violet" dateTextColor="violet"  date="Son 2 Gün" />
-                    <TodoListItem squareColor="green" dateBackgroundColor="green" dateTextColor="green"  date="12/09/2023" />
-                    <TodoListItem squareColor="green" dateBackgroundColor="yellow" dateTextColor="yellow"  date="Son 4 Gün" />
+                    <TodoListItem squareColor="green" dateBackgroundColor="pink" dateTextColor="pink"   date="Son Gün" title="Satın Alımlar" />
+                    <TodoListItem squareColor="green" dateBackgroundColor="violet" dateTextColor="violet"  date="Son 2 Gün" title="Aylık Müşteri Toplantılarının Planlanması" />
+                    <TodoListItem squareColor="green" dateBackgroundColor="green" dateTextColor="green"  date="12/09/2023" title="Müşteri Geridönüşlerinin Sisteme Aktarılması" />
+                    <TodoListItem squareColor="green" dateBackgroundColor="yellow" dateTextColor="yellow"  date="Son 4 Gün" title="Piknik Etkinliğinin Planlanması" />
                 </div>
                 {/* On-Process */}
                 <div>
@@ -107,11 +107,11 @@ const Todo = ({ auth }) => {
                             On-Process
                         </h2>
                     </div>
-                    <TodoListItem squareColor="violet" dateBackgroundColor="pink" dateTextColor="pink" date="Son Gün" />
-                    <TodoListItem squareColor="violet" dateBackgroundColor="violet" dateTextColor="violet" date="Son 2 Gün"  />
-                    <TodoListItem squareColor="violet" dateBackgroundColor="green" dateTextColor="green"  date="12/09/2023" />
-                    <TodoListItem squareColor="violet" dateBackgroundColor="yellow" dateTextColor="yellow" date="Son 4 Gün" />
-                    
+                    <TodoListItem squareColor="violet" dateBackgroundColor="pink" dateTextColor="pink" date="Son Gün" title="Sendikadan Gelen Belgelerin İncelenmesi" />
+                    <TodoListItem squareColor="violet" dateBackgroundColor="violet" dateTextColor="violet" date="Son 2 Gün" title="Üniversite Seminer Planlaması"  />
+                    <TodoListItem squareColor="violet" dateBackgroundColor="green" dateTextColor="green"  date="12/09/2023" title="Stayjer Alımlarının Değerlendirilmesi" />
+                    <TodoListItem squareColor="violet" dateBackgroundColor="yellow" dateTextColor="yellow" date="Son 4 Gün" title="Muhasebe Belgelerinin İletilmesi" />
+
                 </div>
                 {/* Pending */}
                 <div>
@@ -120,9 +120,9 @@ const Todo = ({ auth }) => {
                             On-Process
                         </h2>
                     </div>
-                    <TodoListItem squareColor="yellow" dateBackgroundColor="pink" dateTextColor="pink" date="Bitiş Tarihi " />
+                    <TodoListItem squareColor="yellow" dateBackgroundColor="pink" dateTextColor="pink" date="Bitiş Tarihi " title="Yeni Sistem Entegrasyonu" />
                 </div>
-                
+
             </div>
         </>
     );

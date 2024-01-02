@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AuthenticatedLayout from "@/Pages/Admin/Layout/AuthenticatedLayout.jsx";
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Button, Table, Avatar, Space, Modal, DatePicker } from 'antd';
+import getGravatarURL from "@/utils/gravatar.js";
 
 const AdvanceRequests = ({ auth }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,7 +31,7 @@ const AdvanceRequests = ({ auth }) => {
         </div>,
     },
     {
-      title: 'Avans Talepleri',
+      title: '',
       key: 'avans',
       render: (_, record) => (
         <Space size="middle"  >
@@ -45,18 +46,18 @@ const AdvanceRequests = ({ auth }) => {
   const data = [
     {
       key: '1',
-      name: 'Wade Warren',
-      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+      name: 'Hacer Kılıç',
+      avatar: getGravatarURL('khacer001@gmail.com'),
     },
     {
       key: '2',
-      name: 'Robert Fox',
-      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+      name: 'Ali Asım Bulut',
+      avatar: getGravatarURL('aliasim1625@gmail.com'),
     },
     {
       key: '3',
-      name: 'Marven McKinney',
-      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+      name: 'Osman Gürlek',
+      avatar: getGravatarURL('osmangurlek10@gmail.com'),
     },
   ];
 
@@ -79,7 +80,6 @@ const AdvanceRequests = ({ auth }) => {
           </div>
           <div>
             <DatePicker renderExtraFooter={() => 'extra footer'} picker="month" />
-            <DatePicker renderExtraFooter={() => 'extra footer'} picker="year" />
           </div>
           <div className='flex justify-center gap-10 mt-5 p-3'>
             <Space size="middle">

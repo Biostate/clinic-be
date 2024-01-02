@@ -10,8 +10,15 @@ const columns = [
         dataIndex: 'user',
         key: 'user',
         render: (_, record) =>
-            <div className="flex">
-                <Avatar src={<img src={record.user.avatar} alt={ record.user.name } />} />
+            <div style={{
+                display: 'flex',
+                'flex-wrap': 'nowrap',
+                'justify-content': 'flex-start',
+                'align-items': 'center',
+                'align-content': 'flex-start',
+                overflow: 'auto',
+                'flex-direction': 'row',}}>
+                <Avatar className="mr-2" src={<img src={record.user.avatar} alt={ record.user.name } />} />
                 <div>
                     { record.user.name } { record.user.surname }<br/>
                     { record.user.email }
